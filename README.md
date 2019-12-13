@@ -1,2 +1,3 @@
 # asm-project
-a simple project for asm course
+A team project in Assembly Language Course.
+
