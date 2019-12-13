@@ -7,9 +7,9 @@ del finalMain.pdb
 del finalMain.exe
 
 setlocal 
-set INCLUDE=D:\User\Desktop\1081\組語\final_project
-set LIB=D:\User\Desktop\1081\組語\final_project
-set PATH=D:\User\Desktop\1081\組語\final_project
+set INCLUDE=./
+set LIB=./
+set PATH=./
 
 .\all_lib\ML /c /coff /Zi   finalMain.asm
 if errorlevel 1 goto terminate
