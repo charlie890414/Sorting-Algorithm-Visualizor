@@ -2,10 +2,12 @@
 ---
 ## Data
 ### File
-1. Episodes.txt
+1. Episodes.txt  
 stored data of default 19 episodes.
-2. Records.txt
+2. Records.txt  
 stored player historical game data.
+3. EpisodeData  
+temporally stored user choosen episode information.
 ---
 ## UI
 ### Menu
@@ -33,3 +35,9 @@ Has 3 button, respectively from left to right are Restart, Home(go to Menu), Run
 3. left: cursor left.
 Has 2 button, respectively from left to right are No and Yes. 
 ---
+## Function
+1. ClickEpisode  
+Uses: When user clicked episode button in Menu, call this function.  
+Implementation: read the Episodes.txt, extract data from specific episode.  
+And stored Extracted data in EpisodeData.
+ 
