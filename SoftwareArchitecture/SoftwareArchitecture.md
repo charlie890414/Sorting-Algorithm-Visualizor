@@ -2,11 +2,13 @@
 ---
 ## Datas
 ### File
-1. Episodes.txt  
+1. Episodes.txt(Need more specific description)  
 stored data of default 19 episodes.
-2. Records.txt  
+2. Records.txt(Need more specific description)  
 stored player historical game data.
-3. EpisodeData  
+3. ChoosenEpisode  
+A integer stored the position of cursor.
+4. EpisodeData(Need more specific description)  
 temporally stored user choosen episode information.
 ---
 ## UIs
@@ -36,8 +38,14 @@ Has 3 button, respectively from left to right are Restart, Home(go to Menu), Run
 Has 2 button, respectively from left to right are No and Yes. 
 ---
 ## Functions
-1. ClickEpisode  
+1. ChangeChoosenEpisode  
+Uses: when user change cursor.
+Implementation: change _ChoosenEpisode_, and redraw the pane.  
+2. ClickEpisode  
 Uses: When user clicked episode button in Menu, call this function.  
-Implementation: read the Episodes.txt, extract data from specific episode.  
-And stored Extracted data in EpisodeData.
+Implementation: read the _Episodes.txt_, extract data from specific episode.  
+And stored Extracted data in _EpisodeData_.  
+3. NewGame
+Uses: When developer want to create a new game.  
+Implementation: read the data from _EpisodeData_, and draw the pane.
  
