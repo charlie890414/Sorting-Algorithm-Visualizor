@@ -55,3 +55,7 @@ And call function _Draw_.
 4. Draw  
 Uses: each time refresh the status, then you need to call this function.
 Implementation: draw picture on pane by reading data from _CurrentGameStatus_.
+5. NextSatus  
+Uses: go to next status when playing game.
+Implementation: read data from _CurrentGameStatus_, compute next status by Physic Engine, and store result to _CurrentGameStatus_.s
+WARNING: THIS FUNCTION IS HARD TO CODE. 
