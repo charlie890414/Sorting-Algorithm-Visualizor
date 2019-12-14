@@ -48,10 +48,10 @@ Implementation: change _ChoosenEpisode_, and redraw the pane.
 Uses: When user clicked episode button in Menu, call this function.  
 Implementation: read the _Episodes.txt_, extract data from specific episode.  
 And stored Extracted data in _EpisodeData_.  
-3. NewGame
+3. NewGame  
 Uses: When developer want to create a new game.  
 Implementation: use _CurrentGameStatus_ read data from the _EpisodeData_.  
 And call function _Draw_.  
-4. Draw
+4. Draw  
 Uses: each time refresh the status, then you need to call this function.
 Implementation: draw picture on pane by reading data from _CurrentGameStatus_.
