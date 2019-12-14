@@ -1,13 +1,11 @@
-TITLE Speaker Demo Program               (Speaker.asm)
+TITLE Final Main   (finalMain.asm)
 
-; This program plays a series of ascending notes on
-; the PC speaker.
-; Last update: 10/8/01
-
-INCLUDE library54.inc	; 16-bit Real mode program
+INCLUDE library54.inc
 
 Main EQU start@0
 
+.code
+sample BYTE "this is a sample", 0
 
 .data
 
@@ -46,6 +44,9 @@ hInstance DWORD ?
 ;=================== CODE =========================
 .code
 Main PROC
+
+invoke sampleproc
+
 ; Get a handle to the current process.
 	INVOKE GetModuleHandle, NULL
 	mov hInstance, eax
