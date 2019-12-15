@@ -58,10 +58,10 @@ HomeConfirmPage: 6
 1. DrawMenuPicture(start->1 || 6->1)
 Uses: when state go to "Menu".
 Implementation: read _MenuCursor_ and _Records.txt_, and draw picture on pane .  
-2. ChangeMenuCursor(X)  
+2. ChangeMenuCursor(1)  
 Uses: when user change menu cursor.
 Implementation: change _MenuCursor_, and call _DrawMenuPicture_.  
-3. EnterEpisode(X)  
+3. EnterEpisode(1)  
 Uses: When user clicked enter episode button in Menu, call this function.  
 Implementation: read the _Episodes.txt_, extract data from specific episode.  
 And stored Extracted data in _EpisodeData_. And set _MenuCursor_ to initial state. 
@@ -70,26 +70,26 @@ And call _NewGame_.
 Uses: When developer want to create a new game.  
 Implementation: use _CurrentGameState_ read data from the _EpisodeData_.  
 And call function _DrawGamePlayingPicture_.  
-5. DrawGamePlayingPicture(X)  
+5. DrawGamePlayingPicture(3)  
 Uses: each time refresh the state, then you need to call this function.  
 Implementation: draw picture on pane by reading data from _CurrentGameState_.
-6. NextSatus(X)  
+6. NextSatus(3)  
 Uses: go to next state when playing game(decide by _GameStoppedState_).  
 Implementation: read data from _CurrentGameState_, compute next state by Physic Engine, and store result to _CurrentGameState_.  
 WARNING: THIS FUNCTION IS HARD TO CODE.  
 7. StopGame(3->4)
 Uses: each time user stopped game, then you need to call this function.  
 Implementation: change _GameStoppedState_, And call function _DrawStoppedPagePicture_.    
-8. DrawStoppedPagePicture(X)
+8. DrawStoppedPagePicture(4)
 Uses: when stop button clicked.
 Implementation: read _StoppedPageCursor_, and draw picture on pane .  
-9. ChangeStoppedPageCursor(X)  
+9. ChangeStoppedPageCursor(4)  
 Uses: when user change stopped page cursor.
 Implementation: change _StoppedPageCursor_, and call _DrawStoppedPagePicture_.
 10. DrawConfirmPagePicture(4->5 || 4->6)
 Uses: when home or restart button clicked.
 Implementation: read _ConfirmPageCursor_, and draw picture on pane .  
-11. ChangeConfirmPageCursor(X)  
+11. ChangeConfirmPageCursor(5 || 6)  
 Uses: when user change confirm page cursor.
 Implementation: change _ConfirmPageCursor_, and call _DrawConfirmPagePicture_.
 12. (2->3)
