@@ -50,10 +50,13 @@ Has 2 button, respectively from left to right are No and Yes.
 ## States
 Menu: 1  
 NewGame: 2  
-GamePlaying: 3  
-StoppedPage: 4  
-RestartConfirmPage: 5  
-HomeConfirmPage: 6
+Player control: 3  
+Animation: 4  
+Animation*2: 5  
+StoppedPage: 6  
+ConfirmPage: 7  
+Win Page: 8  
+Lose Page: 9  
 ## Functions
 1. DrawMenuPicture(start->1 || 6->1)
 Uses: when state go to "Menu".
