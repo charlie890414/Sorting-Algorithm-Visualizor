@@ -92,11 +92,11 @@ Implementation: read _ConfirmPageCursor_, and draw picture on pane .
 11. ChangeConfirmPageCursor(5 || 6)  
 Uses: when user change confirm page cursor.
 Implementation: change _ConfirmPageCursor_, and call _DrawConfirmPagePicture_.
-12. (2->3)
-13. RunGame(4->3)  
+12. RunGame(4->3)  
 Uses: each time user rerun the game, then you need to call this function.  
 Implementation: change _GameStoppedState_, And call function _DrawGamePlayingPicture_.    
-14. EnterNo(5->4 || 6->4)  
+13. EnterNo(5->4 || 6->4)  
 Uses: when no button clicked.
 Implementation: call _DrawStoppedPagePicture_.  
+14. (2->3)
 15. 
