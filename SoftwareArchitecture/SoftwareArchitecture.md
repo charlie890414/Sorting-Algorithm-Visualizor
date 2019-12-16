@@ -13,15 +13,15 @@ temporally stored user choosen episode information.
 5. CurrentGameState  
 temporally stored information about current game state.
 this data has more initial information than _EpisodeData_, because user have some operation, and it decide some initial data.
-6. GameStoppedState  
-A integer indicate the state of game. If this value is not zero, then game is stop. If this value is zero, then the game is running.  
+6. ProgramState  
+A integer indicate the state of whole program.  
 7. StoppedPageCursor  
 A integer stored the position of stopped page cursor.
 8. ConfirmPageCursor  
 A integer indicate the state of confirm of user. If this value is not zero, then confirm is yes. If this value is zero, then the confirm is no.  
 9.  
 ---
-## UIs
+## GDIs
 ### Menu
 1. Enter: into episode.
 2. up:  cursor up.
@@ -56,50 +56,50 @@ Animation*2: 5
 StoppedPage: 6  
 ConfirmPage: 7  
 Win Page: 8  
-Lose Page: 9  
+Lose Page: 9   
 ## Functions
-1. DrawMenuPicture(start->1 || 6->1)
+1. DrawMenuPicture
 Uses: when state go to "Menu".
 Implementation: read _MenuCursor_ and _Records.txt_, and draw picture on pane .  
-2. ChangeMenuCursor(1)  
+2. ChangeMenuCursor  
 Uses: when user change menu cursor.
 Implementation: change _MenuCursor_, and call _DrawMenuPicture_.  
-3. EnterEpisode(1)  
+3. EnterEpisode  
 Uses: When user clicked enter episode button in Menu, call this function.  
 Implementation: read the _Episodes.txt_, extract data from specific episode.  
 And stored Extracted data in _EpisodeData_. And set _MenuCursor_ to initial state. 
 And call _NewGame_.   
-4. NewGame(1->2 ||  5->2)  
+4. NewGame  
 Uses: When developer want to create a new game.  
 Implementation: use _CurrentGameState_ read data from the _EpisodeData_.  
 And call function _DrawGamePlayingPicture_.  
-5. DrawGamePlayingPicture(3)  
+5. DrawGamePlayingPicture  
 Uses: each time refresh the state, then you need to call this function.  
 Implementation: draw picture on pane by reading data from _CurrentGameState_.
-6. NextSatus(3)  
+6. NextSatus  
 Uses: go to next state when playing game(decide by _GameStoppedState_).  
 Implementation: read data from _CurrentGameState_, compute next state by Physic Engine, and store result to _CurrentGameState_.  
 WARNING: THIS FUNCTION IS HARD TO CODE.  
-7. StopGame(3->4)
+7. StopGame
 Uses: each time user stopped game, then you need to call this function.  
 Implementation: change _GameStoppedState_, And call function _DrawStoppedPagePicture_.    
-8. DrawStoppedPagePicture(4)
+8. DrawStoppedPagePicture
 Uses: when stop button clicked.
 Implementation: read _StoppedPageCursor_, and draw picture on pane .  
-9. ChangeStoppedPageCursor(4)  
+9. ChangeStoppedPageCursor  
 Uses: when user change stopped page cursor.
 Implementation: change _StoppedPageCursor_, and call _DrawStoppedPagePicture_.
-10. DrawConfirmPagePicture(4->5 || 4->6)
+10. DrawConfirmPagePicture
 Uses: when home or restart button clicked.
 Implementation: read _ConfirmPageCursor_, and draw picture on pane .  
-11. ChangeConfirmPageCursor(5 || 6)  
+11. ChangeConfirmPageCursor  
 Uses: when user change confirm page cursor.
 Implementation: change _ConfirmPageCursor_, and call _DrawConfirmPagePicture_.
-12. RunGame(4->3)  
+12. RunGame  
 Uses: each time user rerun the game, then you need to call this function.  
 Implementation: change _GameStoppedState_, And call function _DrawGamePlayingPicture_.    
-13. EnterNo(5->4 || 6->4)  
+13. EnterNo  
 Uses: when no button clicked.
 Implementation: call _DrawStoppedPagePicture_.  
-14. (2->3)
+14. 
 15. 
