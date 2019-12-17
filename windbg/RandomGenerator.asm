@@ -13,7 +13,7 @@ mov ecx,length-1
     mov ebx, array[ecx]
     mov edx, array[eax]
     mov array[ecx], edx
-    mov array[eax], rbx
+    mov array[eax], ebx
 .ENDW
 popad
 ret
