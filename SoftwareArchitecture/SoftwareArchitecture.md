@@ -38,3 +38,11 @@ Using Fisher–Yates shuffle algorithm to randomly shuffle number series.
 * array: start position of array.  
 * leng: length of array.  
 
+3. ClrRect proto,
+	beginX: WORD, beginY: WORD, endX: WORD, endY: WORD,
+    def: BYTE, consolehandle: DWORD
+* beginX, beginY: 起點座標
+* endX, endY: 終點座標
+* def: 要初始化成哪一個字元(通常情況填入' ')
+* consolehandle: ouputHandle
+* 整體意思：將console上的起點座標與終點座標圍成的矩形範圍(包含起終點)設定為def的字元
