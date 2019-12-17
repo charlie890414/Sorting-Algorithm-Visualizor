@@ -18,3 +18,5 @@ This function use to draw a series of numbers on user console.
 Use this link https://en.wikipedia.org/wiki/Block_Elements being the basis of graphic. 
 3. Sorting Algorithm(bunch of algoithms)  
 Implementation kinds of sorting algorithm.
+4. printblock proto, b_pos: DWORD, leng: DWORD, basic_pos: COORD, HDL: DWORD
+ 將 從b_pos開始的leng個DWORD 印在HDL上, 最左下角座標為basic_pos
