@@ -4,7 +4,7 @@
 ## 2. write asm in windbg folder
      have "INCLUDE **.inc", ".code", "*** PROC", "ret", "*** ENDP", "end" in it
      e.g.
-          INCLUDE irviine32.inc
+          INCLUDE irvine32.inc
           .code
           sample PROC, test1: DWORD
           push eax
