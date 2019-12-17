@@ -10,9 +10,9 @@ del RandomGenerator.exe
 setlocal 
 
 REM 以下三行設成windbg的路徑
-set INCLUDE=D:\User\Desktop\1081\組語\windbg
-set LIB=D:\User\Desktop\1081\組語\windbg;
-set PATH=D:\User\Desktop\1081\組語\windbg;
+set INCLUDE=./
+set LIB=./
+set PATH=./
 
 ML /c /coff /Zi   RandomGenerator.asm
 if errorlevel 1 goto terminate
