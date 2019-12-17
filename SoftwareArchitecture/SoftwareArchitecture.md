@@ -20,6 +20,12 @@ Use this link https://en.wikipedia.org/wiki/Block_Elements being the basis of gr
 Implementation kinds of sorting algorithm.
 
 ## Function Introductions
-1. printblock proto, b_pos: DWORD, leng: DWORD, basic_pos: COORD, HDL: DWORD  
- 將從b_pos開始的leng個DWORD 印在HDL上, 最左下角座標為basic_pos
+
+### 1. printblock proto, b_pos: DWORD, leng: DWORD, basic_pos: COORD, HDL: DWORD  
+* b_pos: 數列起始位置的地址  
+* leng: 數列長度  
+* basic_pos：視覺化圖形的左下角座標  
+* HDL: outputHandle  
+* 整體意思：將 從b_pos開始的leng個DWORD 印在HDL上, 最左下角座標為basic_pos  
 2. RandomGenerator  
+
