@@ -26,9 +26,10 @@ main PROC
 		add esi, TYPE DWORD
 	Loop L1
 
-
-
 	lea edx, data
+
+	INVOKE RandomGenerator, edx, 50
+
 	INVOKE printblock, edx, 50, xyPos, consoleHandle
 	
 

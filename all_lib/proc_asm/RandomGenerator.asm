@@ -5,17 +5,23 @@ RandomGenerator PROC,
     array: PTR DWORD,
     leng: DWORD
 pushad
-mov ecx,leng-1
-.WHILE ecx>=0
+mov ecx,leng
+dec ecx
+mov esi, array
+.WHILE ecx>0
     dec ecx
+    push ecx
     call Randomize
     mov eax,ecx
     inc eax
     call RandomRange
-    mov ebx, array[ecx]
-    mov edx, array[eax]
-    mov array[ecx], edx
-    mov array[eax], ebx
+    shl ecx, 2
+    shl eax, 2
+    mov ebx, [esi + ecx]
+    mov edx, [esi + eax]
+    mov [esi + ecx], edx
+    mov [esi + eax], ebx
+    pop ecx
 .ENDW
 popad
 ret
