@@ -1,171 +1,126 @@
-TITLE Final Main   (finalMain.asm)
-
 INCLUDE library54.inc
 
-Main EQU start@0
-
-.code
-sample BYTE "this is a sample", 0
-
 .data
+consoleHandle    DWORD ?
+curPos COORD <5, 15>
 
-AppLoadMsgTitle BYTE "Application Loaded",0
-AppLoadMsgText  BYTE "This window displays when the WM_CREATE "
-	            BYTE "message is received",0
-
-PopupTitle BYTE "Popup Window",0
-PopupText  BYTE "This window was activated by a "
-	       BYTE "WM_LBUTTONDOWN message",0
-
-GreetTitle BYTE "Main Window Active",0
-GreetText  BYTE "This window is shown immediately after "
-	       BYTE "CreateWindow and UpdateWindow are called.",0
-
-CloseMsg   BYTE "WM_CLOSE message received",0
-
-ErrorTitle  BYTE "Error",0
-WindowName  BYTE "ASM Windows App",0
-className   BYTE "ASMWin",0
+block BYTE "▁", 0, "▂", 0, "▃", 0, "▄", 0, "▅", 0, "▆", 0, "▇", 0, "█", 0
+fullblock BYTE "█", 0
 
 
 
-; Define the Application's Window class structure.
-MainWin WNDCLASS <NULL,WinProc,NULL,NULL,NULL,NULL,NULL, \
-	COLOR_WINDOW,NULL,className>
+main EQU start@0
 
-
-
-
-msg	      MSGStruct <>
-winRect   RECT <>
-hMainWnd  DWORD ?
-hInstance DWORD ?
-
-;=================== CODE =========================
 .code
-Main PROC
-
-invoke sampleproc
-
-; Get a handle to the current process.
-	INVOKE GetModuleHandle, NULL
-	mov hInstance, eax
-	mov MainWin.hInstance, eax
-
-; Load the program's icon and cursor.
-	INVOKE LoadIcon, NULL, IDI_APPLICATION
-	mov MainWin.hIcon, eax
-	INVOKE LoadCursor, NULL, IDC_ARROW
-	mov MainWin.hCursor, eax
-
-; Register the window class.
-	INVOKE RegisterClass, ADDR MainWin
-	.IF eax == 0
-	  call ErrorHandler
-	  jmp Exit_Program
-	.ENDIF
-
-; Create the application's main window.
-; Returns a handle to the main window in EAX.
-	INVOKE CreateWindowEx, 0, ADDR className,
-	  ADDR WindowName,MAIN_WINDOW_STYLE,
-	  CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,
-	  CW_USEDEFAULT,NULL,NULL,hInstance,NULL
+main PROC
+	;INVOKE GETSTDHANDLE, STD_OUTPUT_HANDLE					; mov eax, handle 
+	;INVOKE setConsoleCursorPosition, consoleHandle, xyPos	; mov cursor to xyPos
+	;call ClrScr											; clear console
 	
-
-
-
+	
+	INVOKE GETSTDHANDLE, STD_OUTPUT_HANDLE
+	mov consoleHandle,eax
+	INVOKE setConsoleCursorPosition, consoleHandle, curPos
+	
+	Comment !
+	lea edx, fullblock
+	call writeString
+	call Crlf
+	call WaitMsg
+	!
 		
+			
+	call ClrScr
+	mov ecx, 7
+
+	L1:
+		push ecx
+
+		lea esi, block
+		mov ebx, 7
+		sub ebx, ecx
+		mov ecx, 8
+		L2:
+			push ecx
+
+			
+			mov ecx, ebx
+			cmp ecx, 0
+			je N_L3
+			lea edx, fullblock
+			L3:
+				
+				push ecx
+				push edx
+				INVOKE setConsoleCursorPosition, consoleHandle, curPos
+				pop edx
+				pop ecx
+	
+				call writeString
+				dec curPos.y
+
+				
+			DEC ECX
+			JNE L3
+			N_L3:
+
+			push ecx
+			INVOKE setConsoleCursorPosition, consoleHandle, curPos
+			pop ecx
+			
+			mov edx, esi
+			call writeString
+			add esi, 4
+
+			mov curPos.y, 15
+			add curPos.x, 2
+			
 
 
-; If CreateWindowEx failed, display a message & exit.
-	.IF eax == 0
-	  call ErrorHandler
-	  jmp  Exit_Program
-	.ENDIF
 
-; Show and draw the window.
-	INVOKE ShowWindow, hMainWnd, SW_SHOW
-	INVOKE UpdateWindow, hMainWnd
+			pop ecx
+		DEC ECX
+		JNE L2
+		
+		pop ecx
+	DEC ECX
+	JNE L1
+	
+	mov curPos.x, 5
+	mov curPos.y, 16
+	mov eax, 1
+	mov ecx, 56
+	L4:
+			
+		
+		pushad
+		INVOKE setConsoleCursorPosition, consoleHandle, curPos
+		popad
+		call WriteDec
+		
+		add curPos.x, 2
+		
+		mov ebx, eax
+		and bl, 1
 
-; Display a greeting message.
-	INVOKE MessageBox, hMainWnd, ADDR GreetText,
-	  ADDR GreetTitle, MB_OK
+		je QQ
+		inc curPos.y
+		jmp KK
+		QQ:
+		dec curPos.y
+		KK:
+		inc eax
+	Loop L4
 
-; Begin the program's message-handling loop.
+	mov curPos.x, 0
+	mov curPos.y, 19
+	pushad
+	INVOKE setConsoleCursorPosition, consoleHandle, curPos
+	popad
+	
+	call WaitMsg
 
-Message_Loop:
-	; Get next message from the queue.
-	INVOKE GetMessage, ADDR msg, NULL,NULL,NULL
+	exit
+main ENDP
 
-	; Quit if no more messages.
-	.IF eax == 0
-	  jmp Exit_Program
-	.ENDIF
-
-	; Relay the message to the program's WinProc.
-	INVOKE DispatchMessage, ADDR msg
-    jmp Message_Loop
-
-Exit_Program:
-	  INVOKE ExitProcess,0
-Main ENDP
-
-;-----------------------------------------------------
-WinProc PROC,
-	hWnd:DWORD, localMsg:DWORD, wParam:DWORD, lParam:DWORD
-; The application's message handler, which handles
-; application-specific messages. All other messages
-; are forwarded to the default Windows message
-; handler.
-;-----------------------------------------------------
-	mov eax, localMsg
-
-	.IF eax == WM_LBUTTONDOWN		; mouse button?
-	  INVOKE MessageBox, hWnd, ADDR PopupText,
-	    ADDR PopupTitle, MB_OK
-	  jmp WinProcExit
-	.ELSEIF eax == WM_CREATE		; create window?
-	  INVOKE MessageBox, hWnd, ADDR AppLoadMsgText,
-	    ADDR AppLoadMsgTitle, MB_OK
-	  jmp WinProcExit
-	.ELSEIF eax == WM_CLOSE		; close window?
-	  INVOKE MessageBox, hWnd, ADDR CloseMsg,
-	    ADDR WindowName, MB_OK
-	  INVOKE PostQuitMessage,0
-	  jmp WinProcExit
-	.ELSE		; other message?
-	  INVOKE DefWindowProc, hWnd, localMsg, wParam, lParam
-	  jmp WinProcExit
-	.ENDIF
-
-WinProcExit:
-	ret
-WinProc ENDP
-
-;---------------------------------------------------
-ErrorHandler PROC
-; Display the appropriate system error message.
-;---------------------------------------------------
-.data
-pErrorMsg  DWORD ?		; ptr to error message
-messageID  DWORD ?
-.code
-	INVOKE GetLastError	; Returns message ID in EAX
-	mov messageID,eax
-
-	; Get the corresponding message string.
-	INVOKE FormatMessage, FORMAT_MESSAGE_ALLOCATE_BUFFER + \
-	  FORMAT_MESSAGE_FROM_SYSTEM,NULL,messageID,NULL,
-	  ADDR pErrorMsg,NULL,NULL
-
-	; Display the error message.
-	INVOKE MessageBox,NULL, pErrorMsg, ADDR ErrorTitle,
-	  MB_ICONERROR+MB_OK
-
-	; Free the error message string.
-	INVOKE LocalFree, pErrorMsg
-	ret
-ErrorHandler ENDP
-
-END Main
+END main
