@@ -2,12 +2,9 @@ INCLUDE library54.inc
 
 .data
 consoleHandle    DWORD ?
-curPos COORD <5, 15>
+xyPos COORD <5, 15>
 
-block BYTE "▁", 0, "▂", 0, "▃", 0, "▄", 0, "▅", 0, "▆", 0, "▇", 0, "█", 0
-fullblock BYTE "█", 0
-
-
+data DWORD 50 dup(?)
 
 main EQU start@0
 
@@ -20,104 +17,26 @@ main PROC
 	
 	INVOKE GETSTDHANDLE, STD_OUTPUT_HANDLE
 	mov consoleHandle,eax
-	INVOKE setConsoleCursorPosition, consoleHandle, curPos
 	
-	Comment !
-	lea edx, fullblock
-	call writeString
-	call Crlf
-	call WaitMsg
-	!
-		
-			
-	call ClrScr
-	mov ecx, 7
-
+	;initaialize data
+	mov ecx, 50
+	lea esi, data
 	L1:
-		push ecx
+		mov [esi], ecx
+		add esi, TYPE DWORD
+	Loop L1
 
-		lea esi, block
-		mov ebx, 7
-		sub ebx, ecx
-		mov ecx, 8
-		L2:
-			push ecx
 
-			
-			mov ecx, ebx
-			cmp ecx, 0
-			je N_L3
-			lea edx, fullblock
-			L3:
-				
-				push ecx
-				push edx
-				INVOKE setConsoleCursorPosition, consoleHandle, curPos
-				pop edx
-				pop ecx
+
+	lea edx, data
+	INVOKE printblock, edx, 50, xyPos, consoleHandle
 	
-				call writeString
-				dec curPos.y
-
-				
-			DEC ECX
-			JNE L3
-			N_L3:
-
-			push ecx
-			INVOKE setConsoleCursorPosition, consoleHandle, curPos
-			pop ecx
-			
-			mov edx, esi
-			call writeString
-			add esi, 4
-
-			mov curPos.y, 15
-			add curPos.x, 2
-			
 
 
 
-			pop ecx
-		DEC ECX
-		JNE L2
-		
-		pop ecx
-	DEC ECX
-	JNE L1
-	
-	mov curPos.x, 5
-	mov curPos.y, 16
-	mov eax, 1
-	mov ecx, 56
-	L4:
-			
-		
-		pushad
-		INVOKE setConsoleCursorPosition, consoleHandle, curPos
-		popad
-		call WriteDec
-		
-		add curPos.x, 2
-		
-		mov ebx, eax
-		and bl, 1
-
-		je QQ
-		inc curPos.y
-		jmp KK
-		QQ:
-		dec curPos.y
-		KK:
-		inc eax
-	Loop L4
-
-	mov curPos.x, 0
-	mov curPos.y, 19
-	pushad
-	INVOKE setConsoleCursorPosition, consoleHandle, curPos
-	popad
-	
+	mov xyPos.x, 70
+	mov xyPos.y, 24
+	INVOKE setConsoleCursorPosition, consoleHandle, xyPos
 	call WaitMsg
 
 	exit
