@@ -25,6 +25,7 @@ DIR RandomGenerator.*
 :terminate
 
 MOVE /Y RandomGenerator.obj ..\all_lib\obj
+COPY /Y RandomGenerator.asm ..\all_lib\proc_asm
 
 pause
 endlocal
