@@ -17,9 +17,6 @@ set PATH=./
 ML /c /coff /Zi   RandomGenerator.asm
 if errorlevel 1 goto terminate
 
-LINK /INCREMENTAL:no /debug /subsystem:console /entry:start /out:RandomGenerator.exe RandomGenerator.obj Kernel32.lib irvine32.lib user32.lib
-if errorlevel 1 goto terminate
-
 DIR RandomGenerator.*
 
 :terminate
