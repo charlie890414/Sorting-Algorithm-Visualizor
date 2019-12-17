@@ -1,14 +1,16 @@
 INCLUDE irvine32.inc
+.data
 .code
 RandomGenerator PROC,
     array: PTR DWORD,
-    length: DWORD
+    leng: DWORD
 pushad
-mov ecx,length-1
+mov ecx,leng-1
 .WHILE ecx>=0
     dec ecx
     call Randomize
-    mov eax,ecx+1
+    mov eax,ecx
+    inc eax
     call RandomRange
     mov ebx, array[ecx]
     mov edx, array[eax]

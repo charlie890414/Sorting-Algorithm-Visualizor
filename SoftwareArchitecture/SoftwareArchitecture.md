@@ -36,5 +36,5 @@ Implementation kinds of sorting algorithm.
     length: DWORD
 Using Fisher–Yates shuffle algorithm to randomly shuffle number series.
 * array: start position of array.  
-* length: length of array.  
+* leng: length of array.  
 

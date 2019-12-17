@@ -6,5 +6,5 @@ printblock proto,
 
 RandomGenerator PROTO,
     array: PTR DWORD,
-    length: DWORD
+    leng: DWORD
 

@@ -1,11 +1,11 @@
 @echo off
 
 REM 以下五行替換成.asm檔的檔名
-del printblock.lst
-del printblock.obj
-del printblock.ilk
-del printblock.pdb
-del printblock.exe
+del RandomGenerator.lst
+del RandomGenerator.obj
+del RandomGenerator.ilk
+del RandomGenerator.pdb
+del RandomGenerator.exe
 
 setlocal 
 
@@ -14,17 +14,17 @@ set INCLUDE=D:\User\Desktop\1081\組語\windbg
 set LIB=D:\User\Desktop\1081\組語\windbg;
 set PATH=D:\User\Desktop\1081\組語\windbg;
 
-ML /c /coff /Zi   printblock.asm
+ML /c /coff /Zi   RandomGenerator.asm
 if errorlevel 1 goto terminate
 
-LINK /INCREMENTAL:no /debug /subsystem:console /entry:start /out:printblock.exe printblock.obj Kernel32.lib irvine32.lib user32.lib
+LINK /INCREMENTAL:no /debug /subsystem:console /entry:start /out:RandomGenerator.exe RandomGenerator.obj Kernel32.lib irvine32.lib user32.lib
 if errorlevel 1 goto terminate
 
-DIR printblock.*
+DIR RandomGenerator.*
 
 :terminate
 
-MOVE /Y printblock.obj ..\all_lib\obj
+MOVE /Y RandomGenerator.obj ..\all_lib\obj
 
 pause
 endlocal
