@@ -31,7 +31,7 @@ Implementation kinds of sorting algorithm.
 * basic_pos：視覺化圖形的左下角座標  
 * HDL: outputHandle  
 * 整體意思：將 從b_pos開始的leng個DWORD 印在HDL上, 最左下角座標為basic_pos  
-2. RandomGenerator PROC,  
+2. RandomGenerator PROTO,  
     array: PTR DWORD,  
     length: DWORD
 Using Fisher–Yates shuffle algorithm to randomly shuffle number series.
