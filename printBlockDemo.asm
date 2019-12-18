@@ -1,10 +1,10 @@
 INCLUDE library54.inc
-
+NumbersLength=10
 .data
 consoleHandle    DWORD ?
 xyPos COORD <5, 15>
 text BYTE "abcdefg",0
-data DWORD 50 dup(?)
+data DWORD NumbersLength dup(?)
 
 main EQU start@0
 
@@ -19,7 +19,7 @@ main PROC
 	mov consoleHandle,eax
 	
 	;initaialize data
-	mov ecx, 20
+	mov ecx, NumbersLength
 	lea esi, data
 	L1:
 		mov [esi], ecx
@@ -28,9 +28,9 @@ main PROC
 
 	lea edx, data
 
-	INVOKE RandomGenerator, edx, 20
+	INVOKE RandomGenerator, edx, NumbersLength
 
-	INVOKE printblock, edx, 20, xyPos, consoleHandle
+	INVOKE printblock, edx, NumbersLength, xyPos, consoleHandle
 	
 
 
