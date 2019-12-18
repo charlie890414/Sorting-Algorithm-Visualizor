@@ -3,7 +3,7 @@ INCLUDE library54.inc
 .data
 consoleHandle    DWORD ?
 xyPos COORD <5, 15>
-
+text BYTE "abcdefg",0
 data DWORD 50 dup(?)
 
 main EQU start@0
@@ -35,10 +35,12 @@ main PROC
 
 
 
-	mov xyPos.x, 70
-	mov xyPos.y, 24
+	mov xyPos.x, 40
+	mov xyPos.y, 20
 	INVOKE setConsoleCursorPosition, consoleHandle, xyPos
+	INVOKE printCodeLine, OFFSET text, xyPos, consoleHandle
 	call WaitMsg
+
 
 	exit
 main ENDP

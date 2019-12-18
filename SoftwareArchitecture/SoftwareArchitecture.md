@@ -58,3 +58,12 @@ Using Fisher–Yates shuffle algorithm to randomly shuffle number series.
    * def: 要初始化成哪一個字元(通常情況填入' ')
    * consolehandle: ouputHandle
    * 整體意思：將console上的起點座標與終點座標圍成的矩形範圍(包含起終點)設定為def的字元
+4. printCodeLine PROC,
+	array: PTR DWORD,    
+    basic_pos: COORD,  
+    HDL: DWORD
+Using SetConsoleCursorPosition & WriteString to implement this function.  
+It's can print string on the position you choose.
+   * array: start position of array.  
+   * basic_pos: start position of printing string. 
+   * HDL: outputHandle

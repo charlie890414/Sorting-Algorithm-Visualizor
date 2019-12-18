@@ -1,11 +1,11 @@
 @echo off
 
 REM 以下五行替換成.asm檔的檔名
-del RandomGenerator.lst
-del RandomGenerator.obj
-del RandomGenerator.ilk
-del RandomGenerator.pdb
-del RandomGenerator.exe
+del printCodeLine.lst
+del printCodeLine.obj
+del printCodeLine.ilk
+del printCodeLine.pdb
+del printCodeLine.exe
 
 setlocal 
 
@@ -14,15 +14,15 @@ set INCLUDE=./
 set LIB=./
 set PATH=./
 
-ML /c /coff /Zi   RandomGenerator.asm
+ML /c /coff /Zi   printCodeLine.asm
 if errorlevel 1 goto terminate
 
-DIR RandomGenerator.*
+DIR printCodeLine.*
 
 :terminate
 
-MOVE /Y RandomGenerator.obj ..\all_lib\obj
-COPY /Y RandomGenerator.asm ..\all_lib\proc_asm
+MOVE /Y printCodeLine.obj ..\all_lib\obj
+COPY /Y printCodeLine.asm ..\all_lib\proc_asm
 
 pause
 endlocal
