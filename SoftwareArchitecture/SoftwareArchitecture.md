@@ -33,13 +33,15 @@ Implementation kinds of sorting algorithm.
     b_pos: DWORD,  
     leng: DWORD,  
     basic_pos: COORD,  
+    def: WORD
     HDL: DWORD  
 
    * b_pos: 數列起始位置的地址  
    * leng: 數列長度  
    * basic_pos：視覺化圖形的左下角座標  
+   * def: 兩兩間隔大小
    * HDL: outputHandle  
-   * 整體意思：將 從b_pos開始的leng個DWORD 印在HDL上, 最左下角座標為basic_pos
+   * 整體意思：將 從b_pos開始的leng個DWORD 印在HDL上, 最左下角座標為basic_pos, 兩兩間隔為def
 
 2. RandomGenerator PROTO,  
     array: PTR DWORD,  
