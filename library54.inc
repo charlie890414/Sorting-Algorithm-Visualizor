@@ -27,3 +27,7 @@ ClrRect PROTO,
     endY: WORD,
     def: BYTE, 
     consolehandle: DWORD
+
+setCursorVisible PROTO, 
+	consoleHandle: DWORD,
+	visible: DWORD
