@@ -11,6 +11,10 @@ RandomGenerator PROTO,
     array: PTR DWORD,
     leng: DWORD
 
+ClrRect PROTO,
+	beginX: WORD, beginY: WORD, endX: WORD, endY: WORD, 
+	def: BYTE, consolehandle: DWORD
+
 printCodeLine PROTO,
 	array: PTR DWORD,    
     basic_pos: COORD,  
