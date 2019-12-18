@@ -8,14 +8,14 @@ fullblock BYTE "█", 0
 
 .code
 printblock PROC,
-	b_pos: DWORD, leng: DWORD, basic_pos: COORD, HDL: DWORD
+	b_pos: DWORD, leng: DWORD, basic_pos: COORD, dist: WORD, HDL: DWORD
 	 					; b_pos <= x <= e_pos, print all x by block
 	Local cur_pos: COORD
-
+	Local def_space: WORD
 pushad
 	
 	
-	
+	mov def_space, 2
 	mov ax, basic_pos.x
 	mov cur_pos.x, ax
 
@@ -39,7 +39,8 @@ pushad
 		call writeDec
 		add esi, TYPE DWORD
 		mov ax, cur_pos.x
-		add ax, 3
+		add ax, dist
+		add ax, def_space
 		mov cur_pos.x, ax
 	DEC ECX
 	JNE L1
@@ -97,8 +98,11 @@ pushad
 
 		mov ax, basic_pos.y
 		mov cur_pos.y, ax
-		add cur_pos.x, 3
-
+		
+		mov ax, cur_pos.x
+		add ax, dist
+		add ax, def_space
+		mov cur_pos.x, ax
 		pop ecx
 	DEC ECX
 	JNE L2
