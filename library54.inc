@@ -12,10 +12,12 @@ RandomGenerator PROTO,
     leng: DWORD
 
 ClrRect PROTO,
-	beginX: WORD, beginY: WORD, endX: WORD, endY: WORD, 
-	def: BYTE, consolehandle: DWORD
+	beginX: WORD, beginY: WORD, endX: WORD, endY: WORD, def: BYTE, consolehandle: DWORD
 
 printCodeLine PROTO,
 	array: PTR DWORD,    
     basic_pos: COORD,  
     HDL: DWORD
+
+setCursorVisible PROTO, 
+	consoleHandle: DWORD, visible: DWORD
