@@ -67,3 +67,8 @@ It's can print string on the position you choose.
    * array: start position of array.  
    * basic_pos: start position of printing string. 
    * HDL: outputHandle
+   
+5. setCursorVisible PROTO, 
+	consoleHandle: DWORD, visible: DWORD
+   * consoleHandle: outputHandle
+   * visible: make the cursor visible. 1 for true, and 0 for false
