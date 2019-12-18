@@ -67,3 +67,9 @@ It's can print string on the position you choose.
    * array: start position of array.  
    * basic_pos: start position of printing string. 
    * HDL: outputHandle
+5. NumbersArrayInitialize PROC,  
+    array: PTR DWORD,  
+    leng: DWORD  
+This function set numbers from leng to 1.  
+   * array: start position of array.  
+   * leng: length of array. 

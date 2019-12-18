@@ -1,11 +1,11 @@
 @echo off
 
 REM 以下五行替換成.asm檔的檔名
-del printCodeLine.lst
-del printCodeLine.obj
-del printCodeLine.ilk
-del printCodeLine.pdb
-del printCodeLine.exe
+del NumbersArrayInitialize.lst
+del NumbersArrayInitialize.obj
+del NumbersArrayInitialize.ilk
+del NumbersArrayInitialize.pdb
+del NumbersArrayInitialize.exe
 
 setlocal 
 
@@ -14,15 +14,15 @@ set INCLUDE=./
 set LIB=./
 set PATH=./
 
-ML /c /coff /Zi   printCodeLine.asm
+ML /c /coff /Zi   NumbersArrayInitialize.asm
 if errorlevel 1 goto terminate
 
-DIR printCodeLine.*
+DIR NumbersArrayInitialize.*
 
 :terminate
 
-MOVE /Y printCodeLine.obj ..\all_lib\obj
-COPY /Y printCodeLine.asm ..\all_lib\proc_asm
+MOVE /Y NumbersArrayInitialize.obj ..\all_lib\obj
+COPY /Y NumbersArrayInitialize.asm ..\all_lib\proc_asm
 
 pause
 endlocal
