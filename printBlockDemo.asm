@@ -17,6 +17,7 @@ main PROC
 	
 	INVOKE GETSTDHANDLE, STD_OUTPUT_HANDLE
 	mov consoleHandle,eax
+	;call ClrScr
 	
 	;initaialize data
 	mov ecx, NumbersLength
