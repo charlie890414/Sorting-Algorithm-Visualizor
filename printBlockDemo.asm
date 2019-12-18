@@ -19,7 +19,7 @@ main PROC
 	mov consoleHandle,eax
 	
 	;initaialize data
-	mov ecx, 50
+	mov ecx, 20
 	lea esi, data
 	L1:
 		mov [esi], ecx
@@ -28,9 +28,9 @@ main PROC
 
 	lea edx, data
 
-	INVOKE RandomGenerator, edx, 50
+	INVOKE RandomGenerator, edx, 20
 
-	INVOKE printblock, edx, 50, xyPos, consoleHandle
+	INVOKE printblock, edx, 20, xyPos, consoleHandle
 	
 
 
