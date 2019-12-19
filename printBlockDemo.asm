@@ -1,5 +1,5 @@
 INCLUDE library54.inc
-NumbersLength=10
+NumbersLength=30
 .data
 consoleHandle    DWORD ?
 xyPos COORD <5, 15>
@@ -20,18 +20,12 @@ main PROC
 	;call ClrScr
 	
 	;initaialize data
-	mov ecx, NumbersLength
-	lea esi, data
-	L1:
-		mov [esi], ecx
-		add esi, TYPE DWORD
-	Loop L1
-
+	INVOKE NumbersArrayInitialize, OFFSET data, NumbersLength
 	lea edx, data
 
-	INVOKE RandomGenerator, edx, NumbersLength
+	;INVOKE RandomGenerator, edx, NumbersLength
 
-	INVOKE printblock, edx, NumbersLength, xyPos, consoleHandle
+	INVOKE printblock, edx, NumbersLength, xyPos,1, consoleHandle
 	
 
 

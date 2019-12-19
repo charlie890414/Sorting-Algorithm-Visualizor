@@ -7,7 +7,7 @@ NumbersArrayInitialize PROC,
     leng: DWORD
 pushad
 mov ecx, leng
-lea esi, array
+mov esi, array
 L1:
 mov ebx, leng
 sub ebx, ecx
