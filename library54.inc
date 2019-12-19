@@ -22,3 +22,6 @@ setCursorVisible PROTO,
 setRectAttribute PROTO, 
 	beginX: WORD, beginY: WORD, endX: WORD, endY: WORD, def: WORD, consolehandle: DWORD
 
+NumbersArrayInitialize PROTO,
+    array: PTR DWORD,
+    leng: DWORD
