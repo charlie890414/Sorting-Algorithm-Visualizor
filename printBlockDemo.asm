@@ -1,5 +1,6 @@
 INCLUDE library54.inc
 NumbersLength=30
+
 .data
 consoleHandle    DWORD ?
 xyPos COORD <5, 15>
