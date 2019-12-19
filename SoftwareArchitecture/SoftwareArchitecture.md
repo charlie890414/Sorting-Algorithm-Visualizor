@@ -72,7 +72,7 @@ It's can print string on the position you choose.
 5. NumbersArrayInitialize PROC,  
     array: PTR DWORD,  
     leng: DWORD  
-This function set numbers from leng to 1.  
+This function set numbers from 1 to leng.  
    * array: start position of array.  
    * leng: length of array. 
 5. setCursorVisible PROTO, 
