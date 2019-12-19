@@ -2,7 +2,6 @@ INCLUDE library54.inc
 ;constant block
 NumbersLength=50
 AlgorithmTypeNumber=1
-
 ;constant block
 
 .data
