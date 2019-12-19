@@ -76,7 +76,7 @@ This function set numbers from leng to 1.
    * array: start position of array.  
    * leng: length of array. 
 5. setCursorVisible PROTO, 
-	   consoleHandle: DWORD,  
-     visible: DWORD  
+	consoleHandle: DWORD,  
+    visible: DWORD  
    * consoleHandle: outputHandle
    * visible: make the cursor visible. 1 for true, and 0 for false
