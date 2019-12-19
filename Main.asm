@@ -24,6 +24,7 @@ main EQU start@0
 
 .code
 main PROC
+;SETTING console attributes
 ;INVOKE GETSTDHANDLE, STD_OUTPUT_HANDLE					; mov eax, handle 
 ;INVOKE setConsoleCursorPosition, consoleHandle, xyPos	; mov cursor to xyPos
 ;call ClrScr											; clear console
@@ -32,23 +33,10 @@ mov consoleHandle,eax
 INVOKE SetConsoleTitle, ADDR consoleTitle
 ;INVOKE SetConsoleScreenBufferSize, consoleHandle, xyPos
 ;INVOKE SetConsoleWindowInfo, consoleHandle, 0, OFFSET windowSize
+;----------------------------------------------------------------------------
+.WHILE 1
 
-
-;initaialize Numbers from NumbersLength to 1
-INVOKE NumbersArrayInitialize, OFFSET Numbers, NumbersLength
-;
-
-mov xyPos.x, 15
-mov xyPos.y, 5
-lea edx, Numbers
-INVOKE RandomGenerator, edx, 20
-INVOKE printblock, edx, 20, xyPos, 1, consoleHandle
-
-mov xyPos.x, 40
-mov xyPos.y, 20
-INVOKE setConsoleCursorPosition, consoleHandle, xyPos
-;INVOKE printCodeLine, OFFSET array, xyPos, consoleHandle
-call WaitMsg
+.ENDW
 exit
 main ENDP
 END main
