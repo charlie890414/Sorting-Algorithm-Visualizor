@@ -25,3 +25,11 @@ setRectAttribute PROTO,
 NumbersArrayInitialize PROTO,
     array: PTR DWORD,
     leng: DWORD
+
+Index_to_Coord PROTO, 
+	basicPos: COORD, def: WORD, index: DWORD
+
+
+BubbleSort PROTO, 
+	sequence: PTR DWORD, basicPos: COORD, spacing: WORD, consoleHandle: DWORD
+	
