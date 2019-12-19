@@ -39,16 +39,13 @@ INVOKE SetConsoleWindowInfo, consoleHandle, 1, OFFSET windowSize
 
 
 START:
-	.Switch AlgorithmState
-	.Case 1
-		.break
-	.Case 2
-
-		.break
-	.Default
-
-		.break
-	.EndSwitch
+.Switch AlgorithmState
+    .Case 1
+        INVOKE BubbleSort
+        .break
+    .Default
+        .break
+.EndSwitch
 
 JMP START
 
