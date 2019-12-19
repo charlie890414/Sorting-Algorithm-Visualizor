@@ -8,6 +8,7 @@ AlgorithmTotalNumber=1
 consoleHandle DWORD ?
 xyPos COORD <200, 50>
 basicPos COORD <5, 15>
+spacing WORD 1
 
 windowSize SMALL_RECT <0,0, 199, 49>
 
@@ -37,15 +38,17 @@ INVOKE SetConsoleScreenBufferSize, consoleHandle, xyPos
 INVOKE SetConsoleWindowInfo, consoleHandle, 1, OFFSET windowSize
 ;----------------------------------------------------------------------------
 
-
 START:
-.Switch AlgorithmState
-    .Case 1
-        INVOKE BubbleSort
-        .break
-    .Default
-        .break
-.EndSwitch
+	
+	mov eax, AlgorithmState
+	.If eax==1
+		INVOKE BubbleSort, ADDR sequence, basicPos, spacing, consoleHandle
+
+	.Elseif eax==2
+	
+	.Else
+	
+	.EndIf
 
 JMP START
 
