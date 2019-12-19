@@ -17,6 +17,7 @@ IsAnimationStopped BYTE ? ;A boolean value to indicate the animation is stopped 
 AnimationSpeed DWORD ? ;A integer indicate speed of the animation, it should be bounded.
 AlgorithmState DWORD AlgorithmTypeNumber
 
+
 main EQU start@0
 
 .code
@@ -44,7 +45,7 @@ INVOKE printblock, edx, 20, xyPos, 1, consoleHandle
 mov xyPos.x, 40
 mov xyPos.y, 20
 INVOKE setConsoleCursorPosition, consoleHandle, xyPos
-;INVOKE printCodeLine, OFFSET text, xyPos, consoleHandle
+;INVOKE printCodeLine, OFFSET array, xyPos, consoleHandle
 call WaitMsg
 exit
 main ENDP
