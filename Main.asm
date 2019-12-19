@@ -17,7 +17,7 @@ Numbers DWORD NumbersLength dup(?)       ;
 IsNumberSorted BYTE NumbersLength dup(0) ;A boolean value to indicate the number is sorted or not.
 IsAnimationStopped BYTE ? ;A boolean value to indicate the animation is stopped or not.
 AnimationSpeed DWORD ? ;A integer indicate speed of the animation, it should be bounded.
-AlgorithmState DWORD AlgorithmTypeNumber
+AlgorithmState DWORD 1
 
 
 main EQU start@0
