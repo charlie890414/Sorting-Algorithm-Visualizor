@@ -37,6 +37,7 @@ INVOKE SetConsoleScreenBufferSize, consoleHandle, xyPos
 INVOKE SetConsoleWindowInfo, consoleHandle, 1, OFFSET windowSize
 ;----------------------------------------------------------------------------
 
+
 START:
 	.Switch AlgorithmState
 	.Case 1
