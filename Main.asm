@@ -41,8 +41,7 @@ START:
 	
 	mov eax, AlgorithmState
 	.If eax==1
-		INVOKE BubbleSort, ADDR sequence, basicPos, spacing, NumbersLength, consoleHandle
-        jmp START
+		INVOKE BubbleSort, ADDR AnimationSpeed, AlgorithmTotalNumber, ADDR AlgorithmState, basicPos, spacing, consoleHandle
 	;.Elseif eax==2
 	.Else
     ;error message
