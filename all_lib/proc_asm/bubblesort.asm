@@ -2,13 +2,13 @@ INCLUDE library54.inc
 
 .data
 Next BYTE 0
+Sequence DWORD NumbersLength dup(?)
+IsNumberSorted BYTE NumbersLength dup(0) ;A boolean value to indicate the number is sorted or not.
+IsAnimationStopped BYTE ? ;A boolean value to indicate the animation is stopped or not.
 .code
 
 BubbleSort PROC, 
-	sequenceArray: PTR DWORD,
-    leng: DWORD,
-    IsNumberSortedArray: PTR BYTE
-    IsAnimationStopped: PTR BYTE ? 
+    leng: DWORD, 
     AnimationSpeed: PTR DWORD,
 	AlgorithmTotalNumber: DWORD,
 	AlgorithmState: PTR DWORD,
