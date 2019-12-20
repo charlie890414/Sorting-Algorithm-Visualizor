@@ -16,10 +16,9 @@ consoleTitle BYTE "Sorting Algorithm Visualizor", 0
 
 key WORD ? ;user input 
 
-Sequence DWORD NumbersLength dup(?)
-IsNumberSorted BYTE NumbersLength dup(0) ;A boolean value to indicate the number is sorted or not.
-IsAnimationStopped BYTE ? ;A boolean value to indicate the animation is stopped or not.
-AnimationSpeed DWORD ? ;A integer indicate speed of the animation, it should be bounded. [1%, 100%]
+
+
+AnimationSpeed DWORD ? ;A integer indicate speed of the animation, it should be bounded. [1, 10]
 AlgorithmState DWORD 1
 
 
@@ -42,7 +41,8 @@ START:
 	
 	mov eax, AlgorithmState
 	.If eax==1
-		INVOKE BubbleSort, ADDR sequence, basicPos, spacing, consoleHandle
+		INVOKE BubbleSort, ADDR sequence, basicPos, spacing, NumbersLength, consoleHandle
+        jmp START
 	;.Elseif eax==2
 	.Else
     ;error message
