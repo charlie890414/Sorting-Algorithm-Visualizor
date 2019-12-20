@@ -36,6 +36,7 @@ R:
 INVOKE RandomGenerator, SequenceArray, leng
 mov ecx, leng
 mov esi, IsNumberSortedArray
+jmp return
 L1:
 mov [esi], 0
 add esi, TYPE DWORD

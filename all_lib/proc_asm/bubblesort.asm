@@ -21,7 +21,7 @@ BubbleSort PROC,
 	Local xyPos2: COORD
 
 	;Initialize and print
-	lea esi, sequenceArray
+	lea esi, sequence
 	INVOKE NumbersArrayInitialize, esi, leng
 	
 
@@ -32,7 +32,7 @@ BubbleSort PROC,
 		xor ebx, ebx
 		.While ebx<ecx
 		push ebx
-			lea esi, sequenceArray
+			lea esi, sequence
 			shl ebx, 2
 			add esi, ebx
 			shr ebx, 2
