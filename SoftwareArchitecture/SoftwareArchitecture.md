@@ -6,6 +6,10 @@
 
 1. numbers  
 About 100s.  
+2. animation speed
+3. AlgorithmState
+4. 
+   * eax:  
 
 ## UIs  
 

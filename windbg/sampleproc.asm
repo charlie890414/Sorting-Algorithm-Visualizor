@@ -1,4 +1,4 @@
-INCLUDE irvine32.inc
+INCLUDE library54.inc
 
 .data
 abcds1 BYTE "this is sample proc", 0

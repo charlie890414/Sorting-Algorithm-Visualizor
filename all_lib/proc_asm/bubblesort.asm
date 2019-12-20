@@ -1,30 +1,38 @@
 INCLUDE library54.inc
 
 .data
-
+Next BYTE 0
 .code
 
 BubbleSort PROC, 
-	sequence: PTR DWORD, 
+	sequenceArray: PTR DWORD,
+    leng: DWORD,
+    IsNumberSortedArray: PTR BYTE
+    IsAnimationStopped: PTR BYTE ? 
+    AnimationSpeed: PTR DWORD,
+	AlgorithmTotalNumber: DWORD,
+	AlgorithmState: PTR DWORD,
 	basicPos: COORD, 
 	spacing: WORD, 
 	consoleHandle: DWORD
 	
+
 	Local xyPos: COORD
 	Local xyPos2: COORD
 
-	;shuffle and print
-	lea esi, sequence
-	INVOKE RandomGenerator, esi, 50
+	;Initialize and print
+	lea esi, sequenceArray
+	INVOKE NumbersArrayInitialize, esi, leng
 	
 
-	mov ecx, 49
+	mov ecx, leng
+	dec ecx
 	L2:
 		push ecx
 		xor ebx, ebx
 		.While ebx<ecx
 		push ebx
-			lea esi, sequence
+			lea esi, sequenceArray
 			shl ebx, 2
 			add esi, ebx
 			shr ebx, 2
@@ -81,5 +89,8 @@ BubbleSort PROC,
 		pop ecx
 	DEC ECX
 	JNE L2
+
+return:
+ret
 BubbleSort ENDP
 end
