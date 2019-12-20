@@ -31,6 +31,19 @@ Index_to_Coord PROTO,
 
 
 BubbleSort PROTO, 
-    AnimationSpeed: PTR DWORD, AlgorithmTotalNumber: DWORD, AlgorithmState: PTR DWORD,
-    basicPos: COORD, spacing: WORD, consoleHandle: DWORD
+    AnimationSpeed: PTR DWORD, 
+    AlgorithmTotalNumber: DWORD, 
+    AlgorithmState: PTR DWORD,
+    basicPos: COORD, 
+    spacing: WORD, 
+    consoleHandle: DWORD
 	
+keyEvents PROTO,
+    SequenceArray: PTR DWORD,
+    leng: DWORD,
+    IsNumberSortedArray: PTR BYTE,
+    IsAnimationStopped: PTR BYTE,
+    AnimationSpeed: PTR DWORD,
+    AlgorithmTotalNumber: DWORD,
+	AlgorithmState: PTR DWORD,
+    Next: PTR BYTE

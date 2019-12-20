@@ -17,32 +17,27 @@ mov eax,DelayTime ; delay for msg processing
 call Delay
 call ReadKey ; wait for a keypress
 jz return
-cmp al, 1372h   ;r
+cmp ax, 1372h   ;r
 jz R
-cmp al, 1352h  ;R
+cmp ax, 1352h  ;R
 jz R
-cmp al, 3920h
+cmp ax, 3920h
 jz Space
-cmp al, 1C0Dh
+cmp ax, 1C0Dh
 jz xEnter
-cmp al, 4800h ;white
+cmp ax, 4800h ;white
 jz Up
-cmp al, 5000h
+cmp ax, 5000h
 jz Down
-cmp al, 4D00h
+cmp ax, 4D00h
 jz Right
-cmp al, 4B00h
+cmp ax, 4B00h
 jz Left
 jmp return
 R:
 INVOKE RandomGenerator, SequenceArray, leng
 mov ecx, leng
 mov esi, IsNumberSortedArray
-
-mov eax,1
-call WriteDec
-call Crlf
-
 jmp return
 L1:
 mov eax, 0
@@ -61,19 +56,9 @@ jmp return
 zero:
 mov eax, 1
 mov [esi], eax
-
-mov eax,2
-call WriteDec
-call Crlf
-
 jmp return
 xEnter:
 mov Next, 1
-
-mov eax,3
-call WriteDec
-call Crlf
-
 jmp return
 Up:
 mov esi, AnimationSpeed
@@ -82,11 +67,6 @@ mov eax, [esi]
 inc eax
 mov [esi], eax
 .ENDIF
-
-mov eax,4
-call WriteDec
-call Crlf
-
 jmp return
 Down:
 mov esi, AnimationSpeed
@@ -95,11 +75,6 @@ mov eax, [esi]
 dec eax
 mov [esi], eax
 .ENDIF
-
-mov eax,5
-call WriteDec
-call Crlf
-
 jmp return
 Right:
 mov esi, AlgorithmState
@@ -111,11 +86,6 @@ mov [esi], eax
 mov eax, 1
 mov [esi], eax
 .ENDIF
-
-mov eax,6
-call WriteDec
-call Crlf
-
 jmp return
 Left:
 mov esi, AlgorithmState
@@ -127,11 +97,6 @@ mov [esi], eax
 mov eax, AlgorithmTotalNumber
 mov [esi], eax
 .ENDIF
-
-mov eax,7
-call WriteDec
-call Crlf
-
 jmp return
 
 return:

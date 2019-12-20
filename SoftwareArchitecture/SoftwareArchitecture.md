@@ -84,3 +84,13 @@ This function set numbers from 1 to leng.
     visible: DWORD  
    * consoleHandle: outputHandle
    * visible: make the cursor visible. 1 for true, and 0 for false
+6. keyEvents PROC,
+    SequenceArray: PTR DWORD,
+    leng: DWORD,
+    IsNumberSortedArray: PTR BYTE,
+    IsAnimationStopped: PTR BYTE,
+    AnimationSpeed: PTR DWORD,
+    AlgorithmTotalNumber: DWORD,
+	AlgorithmState: PTR DWORD,
+    Next: PTR BYTE
+It's can read user input and do something.
