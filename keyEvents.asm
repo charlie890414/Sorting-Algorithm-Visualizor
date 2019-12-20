@@ -24,7 +24,7 @@ jz R
 cmp al, 3920h
 jz Space
 cmp al, 1C0Dh
-jz Enter
+jz xEnter
 cmp al, 4800h ;white
 jz Up
 cmp al, 5000h
@@ -45,25 +45,29 @@ call Crlf
 
 jmp return
 L1:
-mov [esi], 0
+mov eax, 0
+mov [esi], eax
 add esi, TYPE DWORD
 Loop L1
 jmp return
 Space:
 mov esi, IsAnimationStopped
-cmp [esi], 0
+mov eax, 0
+cmp [esi], eax
 jz zero
-mov [esi],0
+mov eax, 0
+mov [esi], eax
 jmp return
 zero:
-mov [esi], 1
+mov eax, 1
+mov [esi], eax
 
 mov eax,2
 call WriteDec
 call Crlf
 
 jmp return
-Enter:
+xEnter:
 mov Next, 1
 
 mov eax,3
@@ -73,8 +77,10 @@ call Crlf
 jmp return
 Up:
 mov esi, AnimationSpeed
-.IF [esi]<10
-inc [esi]
+mov eax, [esi]
+.IF eax<10
+inc eax
+mov [esi], eax
 .ENDIF
 
 mov eax,4
@@ -84,8 +90,10 @@ call Crlf
 jmp return
 Down:
 mov esi, AnimationSpeed
-.IF [esi]>1
-dec [esi]
+mov eax, [esi]
+.IF eax>1
+dec eax
+mov [esi], eax
 .ENDIF
 
 mov eax,5
@@ -95,10 +103,13 @@ call Crlf
 jmp return
 Right:
 mov esi, AlgorithmState
-.IF [esi]<AlgorithmTotalNumber
-inc [esi]
+mov eax, [esi]
+.IF eax<AlgorithmTotalNumber
+inc eax
+mov [esi], eax
 .ELSE
-mov [esi], 1
+mov eax, 1
+mov [esi], eax
 .ENDIF
 
 mov eax,6
@@ -108,10 +119,13 @@ call Crlf
 jmp return
 Left:
 mov esi, AlgorithmState
-.IF [esi]>1
-dec [esi]
+mov eax, [esi]
+.IF eax>1
+dec eax
+mov [esi], eax
 .ELSE
-mov [esi], AlgorithmTotalNumber
+mov eax, AlgorithmTotalNumber
+mov [esi], eax
 .ENDIF
 
 mov eax,7
