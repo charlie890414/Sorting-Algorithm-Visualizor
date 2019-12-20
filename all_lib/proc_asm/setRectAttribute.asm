@@ -24,8 +24,8 @@ pushad
 		mov ax, beginX
 		mov curPos.x, ax
 		xor ecx, ecx
-		mov cx, endY
-		sub cx, beginY
+		mov cx, endX
+		sub cx, beginX
 		inc cx
 		
 		L2:
