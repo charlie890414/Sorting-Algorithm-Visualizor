@@ -1,7 +1,7 @@
 INCLUDE library54.inc
 
 .data
-Next BYTE 0
+Next BYTE 0 ;
 Sequence DWORD NumbersLength dup(?)
 IsNumberSorted BYTE NumbersLength dup(0) ;A boolean value to indicate the number is sorted or not.
 IsAnimationStopped BYTE ? ;A boolean value to indicate the animation is stopped or not.
