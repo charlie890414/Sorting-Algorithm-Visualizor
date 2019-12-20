@@ -5,7 +5,9 @@ INCLUDE library54.inc
 .code
 
 BubbleSort PROC, 
-	sequence: PTR DWORD, basicPos: COORD, spacing: WORD, 
+	sequence: PTR DWORD, 
+	basicPos: COORD, 
+	spacing: WORD, 
 	consoleHandle: DWORD
 	
 	Local xyPos: COORD

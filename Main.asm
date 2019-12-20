@@ -43,11 +43,9 @@ START:
 	mov eax, AlgorithmState
 	.If eax==1
 		INVOKE BubbleSort, ADDR sequence, basicPos, spacing, consoleHandle
-
-	.Elseif eax==2
-	
+	;.Elseif eax==2
 	.Else
-	
+    ;error message
 	.EndIf
 
 JMP START
