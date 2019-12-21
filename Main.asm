@@ -18,7 +18,7 @@ key WORD ? ;user input
 
 
 
-AnimationSpeed DWORD ? ;A integer indicate speed of the animation, it should be bounded. [1, 10]
+AnimationSpeed DWORD 3 ;A integer indicate speed of the animation, it should be bounded. [1, 10]
 AlgorithmState DWORD 1
 
 
