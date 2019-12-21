@@ -47,3 +47,5 @@ keyEvents PROTO,
     AlgorithmTotalNumber: DWORD,
 	AlgorithmState: PTR DWORD,
     Next: PTR BYTE
+
+ShowCode PROTO, mode: DWORD, basicPos: COORD, highlight: WORD, consoleHandle: DWORD
