@@ -2,7 +2,7 @@ INCLUDE library54.inc
 
 .data
 Next BYTE 0 ;
-IsAnimationStopped BYTE ? ;A boolean value to indicate the animation is stopped or not.
+IsAnimationStopped BYTE 1 ;A boolean value to indicate the animation is stopped or not.
 
 .code
 
