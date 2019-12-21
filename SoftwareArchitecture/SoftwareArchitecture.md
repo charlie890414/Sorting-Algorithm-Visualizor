@@ -95,3 +95,26 @@ This function set numbers from 1 to leng.
     Next: PTR BYTE
 It's can read user input and do something.  
 Return eax, when eax is 1, means that the program should back to Main. Otherwise do nothing.  
+
+7. setRectAttribute PROC, 
+    beginX: WORD, beginY: WORD, endX: WORD, endY: WORD, def: WORD, consolehandle: DWORD
+    * 將beginX, beginY, endX, endY圍成的區間 設定成def顏色
+
+8. Index_to_Coord PROC, 
+	basicPos: COORD, def: WORD, index: DWORD
+   * 圖形左下角為basicPos, 兩column間隔為def, 得出第index個位置的左下角座標
+   * 回傳於eax, 前 16 bits 為x座標，後 16 bits 為y座標
+   
+9. BubbleSort PROC, 
+    AnimationSpeed: PTR DWORD, AlgorithmTotalNumber: DWORD, AlgorithmState: PTR DWORD,
+    basicPos: COORD, spacing: WORD, consoleHandle: DWORD
+    * bubbleSort主程式
+    * AnimationSpeed為速度百分比，影響Local變數delaytime
+    * AlgorithmTotalNumber為演算法數量
+    * AlgorithmState為當前演算法index
+    * basicPos為圖形左下角位置
+    * spacing為圖形兩column之間的間隔
+10. ShowCode PROTO, mode: DWORD, basicPos: COORD, highlight: WORD, consoleHandle: DWORD
+    * 以basicPos為左上角，顯示與mode相對應的虛擬碼
+    * 指針指向第一行，並且將第一行設定為highlight的顏色(目前highlight==11)
+ 
