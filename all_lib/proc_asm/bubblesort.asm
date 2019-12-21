@@ -22,9 +22,10 @@ BubbleSort PROC,
 	Local delaytime: DWORD
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
+	Local baseTime: DWORD
 pushad
 	mov delaytime, 50
-	
+	mov baseTime, 500
 	;shuffle and print
 	call Clrscr
 	
@@ -89,6 +90,8 @@ jmp outer
 		mov esi, AnimationSpeed
 		mov eax, [esi] 
 		mul delaytime
+		sub baseTime, eax
+		mov eax, baseTime
 		call Delay
 
 		.While ebx < ecx
@@ -98,7 +101,10 @@ jmp outer
 			;delay
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
+			sub baseTime, eax
+			mov eax, baseTime			
 			mul delaytime
+			
 			call Delay
 
 			; change two column to green
@@ -126,6 +132,8 @@ jmp outer
 			;delay
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
+			sub baseTime, eax
+			mov eax, baseTime
 			mul delaytime
 			call Delay
 
@@ -133,6 +141,8 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 
 			;compare two numbers
@@ -164,6 +174,8 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 
 
@@ -175,6 +187,8 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 			
 
@@ -188,6 +202,8 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 			EndSwap:
 		pop ebx
@@ -200,6 +216,8 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 		pop ecx
 	DEC ECX
