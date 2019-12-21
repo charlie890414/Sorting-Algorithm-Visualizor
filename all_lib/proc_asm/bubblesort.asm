@@ -21,18 +21,12 @@ BubbleSort PROC,
 	Local delaytime: DWORD
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
-	Local CodePos: COORD
 pushad
 	mov delaytime, 5
 	
 	;shuffle and print
 	call Clrscr
 	
-	mov CodePos.x, 120
-	mov CodePos.y, 30
-	
-	INVOKE ShowCode, 1, CodePos, 11, consoleHandle
-
 	INVOKE NumbersArrayInitialize, ADDR sequence, 50
 
 	INVOKE RandomGenerator, ADDR sequence, 50

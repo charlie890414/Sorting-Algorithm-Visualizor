@@ -1,6 +1,7 @@
 INCLUDE library54.inc
 DelayTime=10
 .data
+out BYTE 0
 
 .code
 keyEvents PROC,
@@ -86,6 +87,7 @@ mov [esi], eax
 mov eax, 1
 mov [esi], eax
 .ENDIF
+mov out, 1
 jmp return
 Left:
 mov esi, AlgorithmState
@@ -97,11 +99,12 @@ mov [esi], eax
 mov eax, AlgorithmTotalNumber
 mov [esi], eax
 .ENDIF
+mov out, 1
 jmp return
 
 return:
 popad
+mov eax, out
 ret
-
 keyEvents ENDP
 end

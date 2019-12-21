@@ -93,4 +93,5 @@ This function set numbers from 1 to leng.
     AlgorithmTotalNumber: DWORD,
 	AlgorithmState: PTR DWORD,
     Next: PTR BYTE
-It's can read user input and do something.
+It's can read user input and do something.  
+Return eax, when eax is 1, means that the program should back to Main. Otherwise do nothing.  
