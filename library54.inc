@@ -49,3 +49,8 @@ keyEvents PROTO,
     Next: PTR BYTE
 
 ShowCode PROTO, mode: DWORD, basicPos: COORD, highlight: WORD, consoleHandle: DWORD
+
+
+ArrowMove PROTO, basicPos: COORD, PreIndex: DWORD, CurIndex: DWORD, 
+	highlight: WORD, consoleHandle: DWORD
+    

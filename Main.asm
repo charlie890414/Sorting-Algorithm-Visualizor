@@ -6,11 +6,11 @@ AlgorithmTotalNumber=1
 
 .data
 consoleHandle DWORD ?
-xyPos COORD <200, 50>
-basicPos COORD <5, 15>
+xyPos COORD <155, 30>
+basicPos COORD <2, 10>
 spacing WORD 1
 
-windowSize SMALL_RECT <0,0, 199, 49>
+windowSize SMALL_RECT <0,0, 154, 29>
 
 consoleTitle BYTE "Sorting Algorithm Visualizor", 0
 

@@ -14,6 +14,7 @@ BubbleSort PROC,
 	spacing: WORD, 
 	consoleHandle: DWORD
 
+	Local CodePos: COORD
 	Local beginC: COORD
 	Local endC: COORD
 	Local beginC2: COORD
@@ -22,7 +23,7 @@ BubbleSort PROC,
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
 pushad
-	mov delaytime, 5
+	mov delaytime, 900
 	
 	;shuffle and print
 	call Clrscr
@@ -44,13 +45,31 @@ pushad
 	; 	AlgorithmState,
 	; 	ADDR Next
 	; .EndW
+	mov CodePos.x, 90
+	mov CodePos.y, 17
+	
+	INVOKE ShowCode, 1, CodePos, 11, consoleHandle
+	;delay
+	mov eax, delaytime
+	call Delay
+
+
 	mov ecx, 49
 	L2:
 		push ecx
 		xor ebx, ebx
+		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
+		;delay
+		mov eax, delaytime
+		call Delay
+
 		.While ebx < ecx
 		push ebx
-			
+			INVOKE ArrowMove, CodePos, 2, 3, 11, consoleHandle
+			;delay
+			mov eax, delaytime
+			call Delay
+
 			; change two column to green
 			INVOKE Index_to_Coord, basicPos, spacing, ebx
 			mov beginC.y, 0
@@ -71,6 +90,11 @@ pushad
 			INVOKE setRectAttribute, beginC2.x, beginC2.y, endC2.x, endC2.y, 10, consoleHandle
 			pop ebx
 			push ebx
+
+			INVOKE ArrowMove, CodePos, 3, 4, 11, consoleHandle
+			;delay
+			mov eax, delaytime
+			call Delay
 
 			;delay
 			mov eax, delaytime
@@ -100,23 +124,39 @@ pushad
 			inc endC.x
 			INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 10, consoleHandle
 			
+			INVOKE ArrowMove, CodePos, 4, 5, 11, consoleHandle
 			;delay
 			mov eax, delaytime
 			call Delay
 
-		  NoSwap:
 
+			INVOKE ArrowMove, CodePos, 5, 3, 11, consoleHandle
+			
 			;change two column to original color
 			INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 7, consoleHandle
-			
 			;delay
 			mov eax, delaytime
 			call Delay
+			call Delay
+			
 
+			JMP EndSwap
+		  NoSwap:
+			INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 7, consoleHandle
+
+			INVOKE ArrowMove, CodePos, 4, 3, 11, consoleHandle
+
+			;delay
+			mov eax, delaytime
+			call Delay
+			EndSwap:
 		pop ebx
 			inc ebx
 		.EndW
-
+			INVOKE ArrowMove, CodePos, 3, 2, 11, consoleHandle
+			;delay
+			mov eax, delaytime
+			call Delay
 		pop ecx
 	DEC ECX
 	JNE L2

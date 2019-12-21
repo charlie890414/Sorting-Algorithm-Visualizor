@@ -5,7 +5,7 @@ INCLUDE library54.inc
 arrow BYTE "→", 0
 mode1	BYTE	"function bubble_sort (array, length)"		, 0
 		BYTE	"    for i from 0 to length-1"	 			, 0
-		BYTE	"        for(j from 0 to length-1-i"		, 0
+		BYTE	"        for j from 0 to length-1-i"		, 0
     	BYTE	"            if (array[j] > array[j+1])"	, 0
 	    BYTE	"                swap(array[j], array[j+1])", 0
 
