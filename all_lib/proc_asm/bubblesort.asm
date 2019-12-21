@@ -48,7 +48,9 @@ pushad
 	mov CodePos.x, 90
 	mov CodePos.y, 17
 	
-	INVOKE ShowCode, 1, CodePos, 11, consoleHandle
+	INVOKE ShowCode, 1, CodePos, 11, consoleHandle	
+	INVOKE Help, AnimationSpeed, 1, ADDR IsAnimationStopped, consoleHandle
+	
 	;delay
 	mov eax, delaytime
 	call Delay

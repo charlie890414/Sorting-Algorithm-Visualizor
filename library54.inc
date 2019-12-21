@@ -53,4 +53,6 @@ ShowCode PROTO, mode: DWORD, basicPos: COORD, highlight: WORD, consoleHandle: DW
 
 ArrowMove PROTO, basicPos: COORD, PreIndex: DWORD, CurIndex: DWORD, 
 	highlight: WORD, consoleHandle: DWORD
+
+Help PROTO, AnimationSpeed: PTR DWORD, AlgorithmState: PTR DWORD, IsAnimationStopped: PTR BYTE, consoleHandle: DWORD
     
