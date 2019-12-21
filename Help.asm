@@ -11,17 +11,17 @@ mode1	BYTE	"Space: stop or run the animation."		                        , 0
 
 algo    BYTE	"Bubble Sort"		                       						, 0
 
-play	BYTE	"@@@",0
-		BYTE	"@@@@@@",0
-		BYTE	"@@@@@@@@", 0
-		BYTE	"@@@@@@", 0
-		BYTE	"@@@", 0
+play	BYTE	"███",0
+		BYTE	"██████",0
+		BYTE	"████████", 0
+		BYTE	"██████", 0
+		BYTE	"███", 0
 
-stop	BYTE	"@@   @@",0
-		BYTE	"@@   @@",0
-		BYTE	"@@   @@", 0
-		BYTE	"@@   @@", 0
-		BYTE	"@@   @@", 0
+stop	BYTE	"██   ██",0
+		BYTE	"██   ██",0
+		BYTE	"██   ██", 0
+		BYTE	"██   ██", 0
+		BYTE	"██   ██", 0
 
 .code
 
@@ -35,7 +35,9 @@ pushad
 
 	; speed
 	INVOKE setConsoleCursorPosition, consoleHandle, CurPos
-	mov eax, AnimationSpeed
+	
+	mov esi, AnimationSpeed
+	mov eax, [esi]
 	call WriteInt
 
 	.IF AlgorithmState == 1
@@ -52,9 +54,9 @@ pushad
 	; IsAnimationStopped
 	inc CurPos.y
 	.IF IsAnimationStopped == 1		
-		lea edx, stop
-	.ELSE
 		lea edx, play
+	.ELSE
+		lea edx, stop
 	.ENDIF
 
 	mov ecx, 5
