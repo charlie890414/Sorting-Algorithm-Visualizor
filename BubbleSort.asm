@@ -57,6 +57,7 @@ jz return
 cmp eax, 2
 jnz notR
 mov ecx, 49
+INVOKE ClrRect, 0, 0, 154, 11, ' ', consoleHandle
 INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
 notR:
 mov dl, 0
@@ -101,10 +102,9 @@ jmp outer
 			;delay
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
+			mul delaytime
 			sub baseTime, eax
 			mov eax, baseTime			
-			mul delaytime
-			
 			call Delay
 
 			; change two column to green
@@ -132,9 +132,9 @@ jmp outer
 			;delay
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
+			mul delaytime
 			sub baseTime, eax
 			mov eax, baseTime
-			mul delaytime
 			call Delay
 
 			;delay
