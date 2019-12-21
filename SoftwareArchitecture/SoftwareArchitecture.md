@@ -18,7 +18,7 @@ cmd size: 50*200
 1. Space: stop or run the animation.
 2. RightArrow and LeftArrow: choose sorting algorithm.
 3. UpArrow and DownArrow: choose animation speed.
-4. R: random generate number series and Initialize code demo.
+4. R: random generate sequence and Initialize code demo.
 5. Enter: play animation one step when the animation was stopped.
 
 ## Basic Functions
