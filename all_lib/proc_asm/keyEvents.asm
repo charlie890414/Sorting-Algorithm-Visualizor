@@ -17,7 +17,8 @@ keyEvents PROC,
 pushad 
 ; mov eax,DelayTime ; delay for msg processing
 ; call Delay
-mov xout, 0
+mov eax, 0
+mov xout, eax
 call ReadKey ; wait for a keypress
 jz return
 cmp ax, 1372h   ;r
@@ -41,7 +42,8 @@ R:
 INVOKE RandomGenerator, SequenceArray, leng
 mov ecx, leng
 mov esi, IsNumberSortedArray
-mov xout, 2
+mov eax, 2
+mov xout, eax
 jmp return
 L1:
 mov eax, 0
@@ -92,7 +94,8 @@ mov [esi], eax
 mov eax, 1
 mov [esi], eax
 .ENDIF
-mov xout, 1
+mov eax, 1
+mov xout, eax
 jmp return
 Left:
 mov esi, AlgorithmState
@@ -104,7 +107,8 @@ mov [esi], eax
 mov eax, AlgorithmTotalNumber
 mov [esi], eax
 .ENDIF
-mov xout, 1
+mov eax, 1
+mov xout, eax
 jmp return
 
 return:

@@ -70,7 +70,8 @@ cmp IsAnimationStopped, dl
 jz branch
 mov dl, 1
 cmp Next, dl
-mov Next, 0
+mov dl, 0
+mov Next, dl
 jz branch
 jmp xwaitMsg
 
