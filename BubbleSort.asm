@@ -98,8 +98,9 @@ jmp outer
 		mov esi, AnimationSpeed
 		mov eax, [esi] 
 		mul delaytime
-		sub baseTime, eax
-		mov eax, baseTime
+		mov edx, baseTime
+		sub edx, eax
+		mov eax, edx
 		call Delay
 
 		.While ebx < ecx
@@ -136,22 +137,24 @@ jmp outer
 			push ebx
 
 			INVOKE ArrowMove, CodePos, 3, 4, 11, consoleHandle
+
 			;delay
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
-			sub baseTime, eax
-			mov eax, baseTime
+			mov edx, baseTime
+			sub edx, eax
+			mov eax, edx
 			call Delay
 
 			;delay
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
-			sub baseTime, eax
-			mov eax, baseTime
+			mov edx, baseTime
+			sub edx, eax
+			mov eax, edx
 			call Delay
-
 			;compare two numbers
 			lea esi, sequence
 			shl ebx, 2
@@ -181,8 +184,9 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
-			sub baseTime, eax
-			mov eax, baseTime
+			mov edx, baseTime
+			sub edx, eax
+			mov eax, edx
 			call Delay
 
 
@@ -194,8 +198,9 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
-			sub baseTime, eax
-			mov eax, baseTime
+			mov edx, baseTime
+			sub edx, eax
+			mov eax, edx
 			call Delay
 			
 
@@ -209,8 +214,9 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
-			sub baseTime, eax
-			mov eax, baseTime
+			mov edx, baseTime
+			sub edx, eax
+			mov eax, edx
 			call Delay
 			EndSwap:
 		pop ebx
@@ -223,8 +229,9 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
-			sub baseTime, eax
-			mov eax, baseTime
+			mov edx, baseTime
+			sub edx, eax
+			mov eax, edx
 			call Delay
 		pop ecx
 	DEC ECX
