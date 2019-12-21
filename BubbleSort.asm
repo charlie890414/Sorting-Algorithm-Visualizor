@@ -111,8 +111,9 @@ jmp outer
 			mov esi, AnimationSpeed
 			mov eax, [esi] 
 			mul delaytime
-			sub baseTime, eax
-			mov eax, baseTime			
+			mov edx, baseTime
+			sub edx, eax
+			mov eax, edx
 			call Delay
 
 			; change two column to green
