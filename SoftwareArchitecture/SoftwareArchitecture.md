@@ -114,7 +114,13 @@ Return eax, when eax is 1, means that the program should back to Main. Otherwise
     * AlgorithmState為當前演算法index
     * basicPos為圖形左下角位置
     * spacing為圖形兩column之間的間隔
+
 10. ShowCode PROTO, mode: DWORD, basicPos: COORD, highlight: WORD, consoleHandle: DWORD
-    * 以basicPos為左上角，顯示與mode相對應的虛擬碼
+    * 以basicPos為左上角(不含箭頭)，顯示與mode相對應的虛擬碼
     * 指針指向第一行，並且將第一行設定為highlight的顏色(目前highlight==11)
  
+11. ArrowMove PROC, 
+    basicPos: COORD, PreIndex: DWORD, CurIndex: DWORD, highlight: WORD, consoleHandle: DWORD
+    * 以basicPos為虛擬碼左上角，將第PreIndex行還原成7號顏色，將第CurIndex行變成highlight顏色
+    * Index從 1 開始計行
+
