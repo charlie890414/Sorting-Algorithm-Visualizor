@@ -62,7 +62,9 @@ mov eax, 1
 mov [esi], eax
 jmp return
 xEnter:
-mov Next, 1
+mov eax, 1
+mov esi, Next
+mov [esi], eax
 jmp return
 Up:
 mov esi, AnimationSpeed

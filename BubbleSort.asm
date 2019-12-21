@@ -1,7 +1,6 @@
 INCLUDE library54.inc
 
 .data
-Next BYTE 0 ;
 IsAnimationStopped BYTE 1 ;A boolean value to indicate the animation is stopped or not.
 
 .code
@@ -23,10 +22,11 @@ BubbleSort PROC,
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
 	Local baseTime: DWORD
+	Local Next: BYTE
 pushad
 	mov delaytime, 50
-	mov baseTime, 550
-
+	mov baseTime, 501
+	mov Next, 0
 	call Clrscr
 	
 	INVOKE NumbersArrayInitialize, ADDR sequence, 50
