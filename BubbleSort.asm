@@ -23,7 +23,7 @@ BubbleSort PROC,
 	Local IsNumberSorted[50]: BYTE
 pushad
 	mov delaytime, 5
-	
+START:
 	;shuffle and print
 	call Clrscr
 	
@@ -120,7 +120,8 @@ pushad
 		pop ecx
 	DEC ECX
 	JNE L2
-
+jmp START
+return:
 popad
 ret
 BubbleSort ENDP
