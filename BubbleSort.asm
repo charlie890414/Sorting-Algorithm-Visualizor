@@ -26,7 +26,7 @@ BubbleSort PROC,
 pushad
 	mov delaytime, 50
 	mov baseTime, 550
-	;shuffle and print
+
 	call Clrscr
 	
 	INVOKE NumbersArrayInitialize, ADDR sequence, 50
@@ -49,12 +49,10 @@ pushad
 	INVOKE ShowCode, 1, CodePos, 11, consoleHandle	
 	INVOKE Help, AnimationSpeed, 1, ADDR IsAnimationStopped, consoleHandle
 	
-	;delay
-	mov eax, delaytime
-	call Delay
 
 
-	mov ecx, 49
+	mov ecx, 50
+begin:
 
 xwaitMsg:	
 INVOKE keyEvents, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
@@ -63,7 +61,7 @@ cmp eax, 1
 jz return
 cmp eax, 2
 jnz notR
-mov ecx, 49
+mov ecx, 50
 INVOKE ClrRect, 0, 0, 154, 11, ' ', consoleHandle
 INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
 notR:
@@ -72,16 +70,15 @@ cmp IsAnimationStopped, dl
 jz branch
 mov dl, 1
 cmp Next, dl
+mov Next, 0
 jz branch
 jmp xwaitMsg
 
-
 branch:
-.IF ebx<ecx
-jmp inner
-.ELSE
-jmp outer
-.ENDIF
+cmp ecx, 50
+jnz back
+dec ecx
+jmp L2
 	; ;delay
 	; mov esi, AnimationSpeed
 	; mov eax, [esi] 
@@ -89,8 +86,10 @@ jmp outer
 	; call Delay
 	L2:
 		cmp ecx,0
-		jz waitMsg
-
+		jnz keep
+		mov IsAnimationStopped, 1 
+		jmp xwaitMsg
+		keep:
 		push ecx
 		xor ebx, ebx
 		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
@@ -102,9 +101,7 @@ jmp outer
 		sub edx, eax
 		mov eax, edx
 		call Delay
-
 		.While ebx < ecx
-		inner:
 		push ebx
 			INVOKE ArrowMove, CodePos, 2, 3, 11, consoleHandle
 			;delay
@@ -139,14 +136,14 @@ jmp outer
 
 			INVOKE ArrowMove, CodePos, 3, 4, 11, consoleHandle
 
-			;delay
-			mov esi, AnimationSpeed
-			mov eax, [esi] 
-			mul delaytime
-			mov edx, baseTime
-			sub edx, eax
-			mov eax, edx
-			call Delay
+			; ;delay
+			; mov esi, AnimationSpeed
+			; mov eax, [esi] 
+			; mul delaytime
+			; mov edx, baseTime
+			; sub edx, eax
+			; mov eax, edx
+			; call Delay
 
 			;delay
 			mov esi, AnimationSpeed
@@ -156,6 +153,7 @@ jmp outer
 			sub edx, eax
 			mov eax, edx
 			call Delay
+
 			;compare two numbers
 			lea esi, sequence
 			shl ebx, 2
@@ -166,7 +164,7 @@ jmp outer
 			cmp [esi], edx
 			jna NoSwap
 
-			;swap to numbers 
+			;swap two numbers 
 			mov eax, [esi]
 			mov [esi], edx
 			mov [esi+4], eax
@@ -205,7 +203,7 @@ jmp outer
 			call Delay
 			
 
-			JMP EndSwap
+			jmp EndSwap
 		  NoSwap:
 			INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 7, consoleHandle
 
@@ -220,11 +218,12 @@ jmp outer
 			mov eax, edx
 			call Delay
 			EndSwap:
-		pop ebx
+			pop ebx
 			inc ebx
 			jmp xwaitMsg
+			back:
 		.EndW
-			outer:
+		
 			INVOKE ArrowMove, CodePos, 3, 2, 11, consoleHandle
 			;delay
 			mov esi, AnimationSpeed
@@ -235,7 +234,7 @@ jmp outer
 			mov eax, edx
 			call Delay
 		pop ecx
-	DEC ECX
+		dec ecx
 	jmp L2
 return:
 popad
