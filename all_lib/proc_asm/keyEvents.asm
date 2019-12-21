@@ -12,9 +12,12 @@ keyEvents PROC,
     AlgorithmTotalNumber: DWORD,
 	AlgorithmState: PTR DWORD,
     Next: PTR BYTE
+    
+    Local xout: DWORD
 pushad 
-mov eax,DelayTime ; delay for msg processing
-call Delay
+; mov eax,DelayTime ; delay for msg processing
+; call Delay
+mov xout, 0
 call ReadKey ; wait for a keypress
 jz return
 cmp ax, 1372h   ;r
@@ -38,6 +41,7 @@ R:
 INVOKE RandomGenerator, SequenceArray, leng
 mov ecx, leng
 mov esi, IsNumberSortedArray
+mov xout, 2
 jmp return
 L1:
 mov eax, 0
@@ -86,6 +90,7 @@ mov [esi], eax
 mov eax, 1
 mov [esi], eax
 .ENDIF
+mov xout, 1
 jmp return
 Left:
 mov esi, AlgorithmState
@@ -97,11 +102,12 @@ mov [esi], eax
 mov eax, AlgorithmTotalNumber
 mov [esi], eax
 .ENDIF
+mov xout, 1
 jmp return
 
 return:
 popad
+mov eax, xout
 ret
-
 keyEvents ENDP
 end

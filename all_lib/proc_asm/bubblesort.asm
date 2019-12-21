@@ -2,7 +2,7 @@ INCLUDE library54.inc
 
 .data
 Next BYTE 0 ;
-IsAnimationStopped BYTE ? ;A boolean value to indicate the animation is stopped or not.
+IsAnimationStopped BYTE 1 ;A boolean value to indicate the animation is stopped or not.
 
 .code
 
@@ -22,16 +22,14 @@ BubbleSort PROC,
 	Local delaytime: DWORD
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
+	Local baseTime: DWORD
 pushad
-	mov delaytime, 900
-	
+	mov delaytime, 50
+	mov baseTime, 550
 	;shuffle and print
 	call Clrscr
 	
 	INVOKE NumbersArrayInitialize, ADDR sequence, 50
-
-	INVOKE RandomGenerator, ADDR sequence, 50
-
 	INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
 	
 	; .While 1
@@ -57,19 +55,63 @@ pushad
 
 
 	mov ecx, 49
+
+xwaitMsg:	
+INVOKE keyEvents, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
+cmp eax, 1
+jz return
+cmp eax, 2
+jnz notR
+mov ecx, 49
+INVOKE ClrRect, 0, 0, 154, 11, ' ', consoleHandle
+INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
+notR:
+mov dl, 0
+cmp IsAnimationStopped, dl
+jz branch
+mov dl, 1
+cmp Next, dl
+jz branch
+jmp xwaitMsg
+
+
+branch:
+.IF ebx<ecx
+jmp inner
+.ELSE
+jmp outer
+.ENDIF
+	; ;delay
+	; mov esi, AnimationSpeed
+	; mov eax, [esi] 
+	; mul delaytime
+	; call Delay
 	L2:
+		cmp ecx,0
+		jz waitMsg
+
 		push ecx
 		xor ebx, ebx
 		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
 		;delay
-		mov eax, delaytime
+		mov esi, AnimationSpeed
+		mov eax, [esi] 
+		mul delaytime
+		sub baseTime, eax
+		mov eax, baseTime
 		call Delay
 
 		.While ebx < ecx
+		inner:
 		push ebx
 			INVOKE ArrowMove, CodePos, 2, 3, 11, consoleHandle
 			;delay
-			mov eax, delaytime
+			mov esi, AnimationSpeed
+			mov eax, [esi] 
+			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime			
 			call Delay
 
 			; change two column to green
@@ -95,11 +137,19 @@ pushad
 
 			INVOKE ArrowMove, CodePos, 3, 4, 11, consoleHandle
 			;delay
-			mov eax, delaytime
+			mov esi, AnimationSpeed
+			mov eax, [esi] 
+			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 
 			;delay
-			mov eax, delaytime
+			mov esi, AnimationSpeed
+			mov eax, [esi] 
+			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 
 			;compare two numbers
@@ -128,7 +178,11 @@ pushad
 			
 			INVOKE ArrowMove, CodePos, 4, 5, 11, consoleHandle
 			;delay
-			mov eax, delaytime
+			mov esi, AnimationSpeed
+			mov eax, [esi] 
+			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 
 
@@ -137,8 +191,11 @@ pushad
 			;change two column to original color
 			INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 7, consoleHandle
 			;delay
-			mov eax, delaytime
-			call Delay
+			mov esi, AnimationSpeed
+			mov eax, [esi] 
+			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 			
 
@@ -149,20 +206,30 @@ pushad
 			INVOKE ArrowMove, CodePos, 4, 3, 11, consoleHandle
 
 			;delay
-			mov eax, delaytime
+			mov esi, AnimationSpeed
+			mov eax, [esi] 
+			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 			EndSwap:
 		pop ebx
 			inc ebx
+			jmp xwaitMsg
 		.EndW
+			outer:
 			INVOKE ArrowMove, CodePos, 3, 2, 11, consoleHandle
 			;delay
-			mov eax, delaytime
+			mov esi, AnimationSpeed
+			mov eax, [esi] 
+			mul delaytime
+			sub baseTime, eax
+			mov eax, baseTime
 			call Delay
 		pop ecx
 	DEC ECX
-	JNE L2
-
+	jmp L2
+return:
 popad
 ret
 BubbleSort ENDP
