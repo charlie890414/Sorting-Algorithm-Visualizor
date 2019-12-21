@@ -21,7 +21,7 @@ BubbleSort PROC,
 	Local delaytime: DWORD
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
-
+pushad
 	mov delaytime, 5
 	
 	;shuffle and print
@@ -33,17 +33,17 @@ BubbleSort PROC,
 
 	INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
 	
-	.While 1
-	INVOKE keyEvents,
-		ADDR Sequence,
-		50,
-		ADDR IsNumberSorted,
-		OFFSET IsAnimationStopped,
-		AnimationSpeed,
-		AlgorithmTotalNumber,
-		AlgorithmState,
-		ADDR Next
-	.EndW
+	; .While 1
+	; INVOKE keyEvents,
+	; 	ADDR Sequence,
+	; 	50,
+	; 	ADDR IsNumberSorted,
+	; 	OFFSET IsAnimationStopped,
+	; 	AnimationSpeed,
+	; 	AlgorithmTotalNumber,
+	; 	AlgorithmState,
+	; 	ADDR Next
+	; .EndW
 	mov ecx, 49
 	L2:
 		push ecx
@@ -121,6 +121,7 @@ BubbleSort PROC,
 	DEC ECX
 	JNE L2
 
-
+popad
+ret
 BubbleSort ENDP
 end

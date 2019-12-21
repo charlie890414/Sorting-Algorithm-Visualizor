@@ -21,7 +21,7 @@ BubbleSort PROC,
 	Local delaytime: DWORD
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
-
+pushad
 	mov delaytime, 5
 	
 	;shuffle and print
@@ -121,6 +121,7 @@ BubbleSort PROC,
 	DEC ECX
 	JNE L2
 
-
+popad
+ret
 BubbleSort ENDP
 end
