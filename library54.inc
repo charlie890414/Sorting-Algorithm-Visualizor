@@ -56,3 +56,14 @@ ArrowMove PROTO, basicPos: COORD, PreIndex: DWORD, CurIndex: DWORD,
 
 Help PROTO, AnimationSpeed: PTR DWORD, AlgorithmState: PTR DWORD, IsAnimationStopped: PTR BYTE, consoleHandle: DWORD
     
+
+DelayAndEvent PROTO, DelayTime: DWORD, Accuracy: DWORD, retNum: DWORD, 
+    SequenceArray: PTR DWORD,
+    leng: DWORD,
+    IsNumberSortedArray: PTR BYTE,
+    IsAnimationStopped: PTR BYTE,
+    AnimationSpeed: PTR DWORD,
+    AlgorithmTotalNumber: DWORD,
+	AlgorithmState: PTR DWORD,
+    Next: PTR BYTE
+    

@@ -20,100 +20,118 @@ pushad
 mov eax, 0
 mov xout, eax
 call ReadKey ; wait for a keypress
-jz return
+    jz return
 cmp ax, 1372h   ;r
-jz R
+    jz R
 cmp ax, 1352h  ;R
-jz R
+    jz R
 cmp ax, 3920h
-jz Space
+    jz Space
 cmp ax, 1C0Dh
-jz xEnter
+    jz xEnter
 cmp ax, 4800h ;white
-jz Up
+    jz Up
 cmp ax, 5000h
-jz Down
+    jz Down
 cmp ax, 4D00h
-jz Right
+    jz Right
 cmp ax, 4B00h
-jz Left
+    jz Left
+
 jmp return
 R:
-INVOKE RandomGenerator, SequenceArray, leng
-mov ecx, leng
-mov esi, IsNumberSortedArray
-mov eax, 2
-mov xout, eax
-jmp return
+    INVOKE RandomGenerator, SequenceArray, leng
+    mov ecx, leng
+    mov esi, IsNumberSortedArray
+    mov eax, 2
+    mov xout, eax
+    jmp return
+
 L1:
-mov eax, 0
-mov [esi], eax
-add esi, TYPE DWORD
-Loop L1
-jmp return
+    mov eax, 0
+    mov [esi], eax
+    add esi, TYPE DWORD
+    Loop L1
+    jmp return
+
 Space:
-mov esi, IsAnimationStopped
-mov eax, 0
-cmp [esi], eax
-jz zero
-mov eax, 0
-mov [esi], eax
-jmp return
-zero:
-mov eax, 1
-mov [esi], eax
-jmp return
+    mov esi, IsAnimationStopped
+    mov eax, 0
+    cmp [esi], eax
+    jz zero
+    mov eax, 0
+    mov [esi], eax
+    jmp return
+    zero:
+        mov eax, 1
+        mov [esi], eax
+        jmp return
+
 xEnter:
-mov eax, 1
-mov esi, Next
-mov [esi], eax
-jmp return
+    mov eax, 1
+    mov esi, Next
+    mov [esi], eax
+    jmp return
+
 Up:
-mov esi, AnimationSpeed
-mov eax, [esi]
-.IF eax<10
-inc eax
-mov [esi], eax
-.ENDIF
-jmp return
+    mov esi, AnimationSpeed
+    mov eax, [esi]
+    .IF eax<10
+        inc eax
+        mov [esi], eax
+    .ENDIF
+
+    jmp return
+
 Down:
-mov esi, AnimationSpeed
-mov eax, [esi]
-.IF eax>1
-dec eax
-mov [esi], eax
-.ENDIF
-jmp return
+    mov esi, AnimationSpeed
+    mov eax, [esi]
+    .IF eax>1
+        dec eax
+        mov [esi], eax
+    .ENDIF
+    
+    jmp return
+
 Right:
-mov esi, AlgorithmState
-mov eax, [esi]
-.IF eax<AlgorithmTotalNumber
-inc eax
-mov [esi], eax
-.ELSE
-mov eax, 1
-mov [esi], eax
-.ENDIF
-mov eax, 1
-mov xout, eax
-jmp return
+    mov esi, AlgorithmState
+    mov eax, [esi]
+    .IF eax<AlgorithmTotalNumber
+        inc eax
+        mov [esi], eax
+    .ELSE
+        mov eax, 1
+        mov [esi], eax
+    .ENDIF
+    
+    mov eax, 1
+    mov xout, eax
+    jmp return
+
 Left:
-mov esi, AlgorithmState
-mov eax, [esi]
-.IF eax>1
-dec eax
-mov [esi], eax
-.ELSE
-mov eax, AlgorithmTotalNumber
-mov [esi], eax
-.ENDIF
-mov eax, 1
-mov xout, eax
-jmp return
+    mov esi, AlgorithmState
+    mov eax, [esi]
+    .IF eax>1
+        dec eax
+        mov [esi], eax
+    .ELSE
+        mov eax, AlgorithmTotalNumber
+        mov [esi], eax
+    .ENDIF
+
+    mov eax, 1
+    mov xout, eax
+    jmp return
+
+
+
 
 return:
-popad
-mov eax, xout
-ret
+
+    popad
+    mov eax, xout
+    ret
+
+
 keyEvents ENDP
 end
