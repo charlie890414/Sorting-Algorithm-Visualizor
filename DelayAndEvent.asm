@@ -34,10 +34,10 @@ pushad
     
     mov ebx, Accuracy
     SUB ECX, ebx
-    .IF ECX>1
-        JMP L1
-    .ELSE
+    .IF ECX < 1
         JMP PeaceBye
+    .ELSE
+        JMP L1
     .ENDIF
 
 BYE:

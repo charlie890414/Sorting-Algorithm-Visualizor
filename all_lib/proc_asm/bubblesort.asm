@@ -232,6 +232,18 @@ go:
 			jne singleMsg
 			B7:
 		pop ecx
+
+		; to orange
+		INVOKE Index_to_Coord, basicPos, spacing, ecx
+		mov beginC.y, 0
+		mov endC.y, ax
+		inc endC.y
+		shr eax, 16
+		mov beginC.x, ax
+		inc ax
+		INVOKE setRectAttribute, beginC.x, beginC.y, ax, endC2.y, 12, consoleHandle
+
+
 		dec ecx
 	jmp L2
 return:
