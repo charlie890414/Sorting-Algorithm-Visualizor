@@ -9,7 +9,13 @@ mode1	BYTE	"Space: stop or run the animation."		                        , 0
     	BYTE	"R: random generate sequence and Initialize code demo."	        , 0
 	    BYTE	"Enter: play animation one step when the animation was stopped.", 0
 
-algo    BYTE	"Bubble Sort"		                       						, 0
+algo    BYTE	"Bubble Sort",0
+
+speed 	BYTE	"Speed",0
+block 	BYTE	"██",0
+
+empty 	BYTE	"░░",0
+space 	BYTE	"  ",0
 
 play	BYTE	"███",0
 		BYTE	"██████",0
@@ -30,18 +36,39 @@ Help PROC, AnimationSpeed: PTR DWORD, AlgorithmState: PTR DWORD, IsAnimationStop
 
 pushad
 
-	mov CurPos.x, 10
+	mov CurPos.x, 20
 	mov CurPos.y, 14
 
 	; speed
 	INVOKE setConsoleCursorPosition, consoleHandle, CurPos
-	
+	lea edx, speed
+	call WriteString
+
+	lea edx, space
+	call WriteString
+
 	mov esi, AnimationSpeed
 	mov eax, [esi]
+	mov ecx, 10
 	call WriteInt
 
+	lea edx, space
+	call WriteString
+	sd:
+		.IF eax > 0
+			lea edx, block
+			call WriteString
+			dec eax
+		.ELSE
+			lea edx, empty
+			call WriteString
+		.ENDIF
+	loop sd
+	
+
+    mov CurPos.x, 20
+	mov CurPos.y, 18
 	.IF AlgorithmState == 1
-		inc CurPos.y
 		INVOKE setConsoleCursorPosition, consoleHandle, CurPos
 		lea edx, algo
 		call WriteString
@@ -52,7 +79,8 @@ pushad
 	.ENDIF
 
 	; IsAnimationStopped
-	inc CurPos.y
+	mov CurPos.x, 10
+	mov CurPos.y, 14
 	.IF IsAnimationStopped == 1		
 		lea edx, play
 	.ELSE
@@ -90,7 +118,8 @@ pushad
 
 	
 	; help
-	inc CurPos.y
+	mov CurPos.x, 10
+	mov CurPos.y, 20
 	lea edx, mode1	
 
 	mov ecx, 5
