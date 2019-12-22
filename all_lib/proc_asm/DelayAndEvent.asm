@@ -21,25 +21,15 @@ pushad
     INVOKE keyEvents, SequenceArray, leng, IsNumberSortedArray, IsAnimationStopped,
 	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, Next
 
-    cmp eax, 1  ; arrow
-    jz BYE
-    cmp eax, 2  ;R
-    jz BYE
-    notR:
-    mov esi, IsAnimationStopped
-    mov bl, 1
-    cmp [esi], bl
-    jz MID
-    
+    cmp eax, 3  ; arrow
+    jnz BYE
     
     mov ebx, Accuracy
-    SUB ECX, ebx
-    .IF ECX>1
-        JMP L1
-    .ELSE
-        JMP PeaceBye
-    .ENDIF
-
+    sub ecx, ebx
+    cmp ecx, 1
+    jna PeaceBye
+    ja L1
+    
 BYE:
     mov Cur, eax
 popad
@@ -47,12 +37,6 @@ popad
     mov edx, retNum
     ret
 
-MID:
-    mov esi, Next
-    mov bl, 1
-    cmp [esi], bl
-    jz BYE
-   
 PeaceBye:
     popad
     mov edx, -1

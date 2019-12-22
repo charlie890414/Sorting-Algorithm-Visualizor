@@ -98,6 +98,20 @@ go:
 	L2:
 		cmp ecx,0
 		jnz keep
+
+
+		; to red
+		INVOKE Index_to_Coord, basicPos, spacing, 0
+		mov beginC.y, 0
+		mov endC.y, ax
+		inc endC.y
+		shr eax, 16
+		mov beginC.x, ax
+		inc ax
+		INVOKE setRectAttribute, beginC.x, beginC.y, ax, endC2.y, 12, consoleHandle
+
+
+
 		mov IsAnimationStopped, 1 
 		jmp xwaitMsg
 		keep:
@@ -234,7 +248,7 @@ go:
 			B7:
 		pop ecx
 
-		; to orange
+		; to red
 		INVOKE Index_to_Coord, basicPos, spacing, ecx
 		mov beginC.y, 0
 		mov endC.y, ax
@@ -244,9 +258,10 @@ go:
 		inc ax
 		INVOKE setRectAttribute, beginC.x, beginC.y, ax, endC2.y, 12, consoleHandle
 
-
 		dec ecx
 	jmp L2
+
+
 return:
 popad
 ret
