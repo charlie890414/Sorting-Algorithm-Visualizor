@@ -56,14 +56,16 @@ begin:
 mov edx, 0
 mov eax, 0
 xwaitMsg:
-INVOKE keyEvents, SequenceArray, leng, IsNumberSortedArray, IsAnimationStopped,
-	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, Next	
+INVOKE keyEvents, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
+	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next	
 singleMsg:
 cmp eax, 1
 jz return
 cmp eax, 2
 jnz notR
-mov ecx, 49
+mov ecx, 50
+INVOKE ClrRect, 0, 0, 154, 11, ' ', consoleHandle
+INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
 notR:
 mov al, 0
 cmp IsAnimationStopped, al
@@ -73,6 +75,11 @@ mov al, 1
 cmp Next, al
 jnz xwaitMsg
 branch:
+cmp ecx, 50
+jnz go 
+dec ecx
+jmp L2
+go:
 	cmp edx, 1
 		je B1
 	cmp edx, 2

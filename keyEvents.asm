@@ -40,8 +40,6 @@ jz Left
 jmp return
 R:
 INVOKE RandomGenerator, SequenceArray, leng
-INVOKE ClrRect, 0, 0, 154, 11, ' ', consoleHandle
-INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
 mov ecx, leng
 mov esi, IsNumberSortedArray
 mov eax, 2

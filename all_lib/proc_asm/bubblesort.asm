@@ -55,30 +55,31 @@ pushad
 begin:
 mov edx, 0
 mov eax, 0
-xwaitMsg:	
-INVOKE keyEvents, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
-	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
+xwaitMsg:
+INVOKE keyEvents, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
+	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next	
 singleMsg:
 cmp eax, 1
-
 jz return
 cmp eax, 2
 jnz notR
-
-mov ecx, 49
+mov ecx, 50
 INVOKE ClrRect, 0, 0, 154, 11, ' ', consoleHandle
 INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
 notR:
 mov al, 0
 cmp IsAnimationStopped, al
-
-jnz nbranch
+jnz xwaitMsg
 jz branch
 mov al, 1
 cmp Next, al
-
-jnz nbranch
+jnz xwaitMsg
 branch:
+cmp ecx, 50
+jnz go 
+dec ecx
+jmp L2
+go:
 	cmp edx, 1
 		je B1
 	cmp edx, 2
@@ -93,7 +94,6 @@ branch:
 		je B6
 	cmp edx, 7
 		je B7
-nbranch:
 
 	L2:
 		cmp ecx,0
@@ -109,6 +109,7 @@ nbranch:
 	 		AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
 		
 		cmp edx, -1
+		mov edx, 1
 		jne singleMsg
 		
 		B1:
@@ -119,6 +120,7 @@ nbranch:
 			INVOKE DelayAndEvent, DelayTime, 20, 2, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
 			cmp edx, -1
+			mov edx, 2
 			jne singleMsg
 			B2:
 		
@@ -149,6 +151,7 @@ nbranch:
 			INVOKE DelayAndEvent, DelayTime, 20, 3, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
 			cmp edx, -1
+			mov edx, 3
 			jne singleMsg
 			B3:
 		
@@ -182,6 +185,7 @@ nbranch:
 			INVOKE DelayAndEvent, DelayTime, 20, 4, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
 			cmp edx, -1
+			mov edx, 4
 			jne singleMsg
 			B4:
 		
@@ -194,6 +198,7 @@ nbranch:
 			INVOKE DelayAndEvent, DelayTime, 20, 5, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
 			cmp edx, -1
+			mov edx, 5
 			jne singleMsg
 			B5:
 		
@@ -208,6 +213,7 @@ nbranch:
 			INVOKE DelayAndEvent, DelayTime, 20, 6, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
 			cmp edx, -1
+			mov edx, 6
 			jne singleMsg
 			B6:
 		
@@ -222,6 +228,7 @@ nbranch:
 			INVOKE DelayAndEvent, DelayTime, 20, 7, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
 			cmp edx, -1
+			mov edx, 7
 			jne singleMsg
 			B7:
 		pop ecx
