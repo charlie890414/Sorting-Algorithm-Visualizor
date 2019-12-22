@@ -124,3 +124,15 @@ Return eax, when eax is 1, means that the program should back to Main. Otherwise
     * 以basicPos為虛擬碼左上角，將第PreIndex行還原成7號顏色，將第CurIndex行變成highlight顏色
     * Index從 1 開始計行
 
+12. DelayAndEvent PROC, DelayTime: DWORD, Accuracy: DWORD, retNum: DWORD, 
+    SequenceArray: PTR DWORD,
+    leng: DWORD,
+    IsNumberSortedArray: PTR BYTE,
+    IsAnimationStopped: PTR BYTE,
+    AnimationSpeed: PTR DWORD,
+    AlgorithmTotalNumber: DWORD,
+	AlgorithmState: PTR DWORD,
+    Next: PTR BYTE
+    Local Cur: DWORD
+    * 停止DelayTime毫秒，以Accuracy毫秒為單位呼叫keyEvents。當偵測到按鍵，立即return並將edx設為retNum。
+    * 若DelayTime毫秒內皆無按鍵，則edx==-1
