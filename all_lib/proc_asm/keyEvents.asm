@@ -20,7 +20,10 @@ pushad
 mov eax, 0
 mov xout, eax
 call ReadKey ; wait for a keypress
-jz return
+jnz have
+mov xout, 3
+jmp return
+have:
 cmp ax, 1372h   ;r
 jz R
 cmp ax, 1352h  ;R
