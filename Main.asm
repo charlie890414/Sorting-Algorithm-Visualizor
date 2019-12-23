@@ -7,7 +7,7 @@ AlgorithmTotalNumber=1
 .data
 consoleHandle DWORD ?
 xyPos COORD <155, 30>
-basicPos COORD <2, 10>
+basicPos COORD <3, 10>
 spacing WORD 1
 
 windowSize SMALL_RECT <0,0, 154, 29>

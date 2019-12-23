@@ -120,9 +120,7 @@ go:
 		mov beginC.x, ax
 		inc ax
 		INVOKE setRectAttribute, beginC.x, beginC.y, ax, endC2.y, 12, consoleHandle
-
-
-
+		mov ecx, 50
 		mov IsAnimationStopped, 1 
 		jmp xwaitMsg
 		keep:
