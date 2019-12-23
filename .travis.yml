@@ -9,7 +9,7 @@ script:
   - ./make_main_CD.bat
   - ls -al
   - powershell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
-  - powershell -Command '& "C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x86\signtool.exe" sign -debug -t http://timestamp.comodoca.com/authenticode -f certificate.pfx Sorting.Algorithm.Visualizor.exe'
+  - powershell ./windows.ps1
 deploy:
   provider: releases
   skip_cleanup: true
