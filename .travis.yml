@@ -1,8 +1,6 @@
 os: windows
 language: shell
 script:
-  - powershell
-  - choco install -y windows-sdk-10.1
   - ./make_Help_CD.bat
   - ./make_keyEvents_CD.bat
   - ./make_DelayAndEvent_CD.bat
