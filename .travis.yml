@@ -12,6 +12,6 @@ deploy:
   token: $GH_TOKEN
   file_glob: true
   file:
-    - "Main.exe"
+    - "Sorting Algorithm Visualizor.exe"
   on:
     tags: true
