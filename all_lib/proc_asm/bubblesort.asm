@@ -128,7 +128,6 @@ go:
 		keep:
 		push ecx
 		xor ebx, ebx
-		inc ebx
 		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
 		
 		;delay
