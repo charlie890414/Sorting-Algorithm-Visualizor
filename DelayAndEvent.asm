@@ -16,18 +16,21 @@ DelayAndEvent PROC, DelayTime: DWORD, Accuracy: DWORD, retNum: DWORD,
     
 pushad
     mov ecx, DelayTime
+    add ecx, Accuracy
     mov eax, Accuracy
+    
     L1:
+    mov eax, Accuracy
     call Delay
     INVOKE keyEvents, SequenceArray, leng, IsNumberSortedArray, IsAnimationStopped,
 	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, Next, consoleHandle
 
-    cmp eax, 3  ; arrow
+    cmp eax, 3 
     jnz BYE
     
     mov ebx, Accuracy
     sub ecx, ebx
-    cmp ecx, 1
+    cmp ecx, Accuracy
     jna PeaceBye
     ja L1
     

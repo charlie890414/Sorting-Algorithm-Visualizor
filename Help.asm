@@ -37,7 +37,7 @@ Help PROC, AnimationSpeed: PTR DWORD, AlgorithmState: PTR DWORD, IsAnimationStop
 
 pushad
 
-	mov CurPos.x, 22
+	mov CurPos.x, 25
 	mov CurPos.y, 14
 
 	; speed
@@ -71,7 +71,7 @@ pushad
 	loop sd
 	
 
-    mov CurPos.x, 22
+    mov CurPos.x, 25
 	mov CurPos.y, 18
 	.IF AlgorithmState == 1
 		INVOKE setConsoleCursorPosition, consoleHandle, CurPos
@@ -90,7 +90,7 @@ pushad
 	mov esi, IsAnimationStopped
 	mov eax, [esi]
 	
-	INVOKE ClrRect, 10, 14, 17, 19, ' ', consoleHandle
+	INVOKE ClrRect, 10, 14, 24, 19, ' ', consoleHandle
 
 	.IF eax == 0
 		lea edx, play
