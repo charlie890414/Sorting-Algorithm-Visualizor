@@ -1,4 +1,4 @@
-# asm-project
+# Sorting Algorithm Visualizor
 
 [![Build Status](https://travis-ci.com/charlie890414/asm-project.svg?branch=master)](https://travis-ci.com/charlie890414/asm-project)
 
