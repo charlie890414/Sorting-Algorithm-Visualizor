@@ -6,7 +6,6 @@ script:
   - ./make_DelayAndEvent_CD.bat
   - ./make_BubbleSort_CD.bat
   - ./make_main_CD.bat
-  - choco upgrade -y windows-sdk-10.1
   - powershell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
   - powershell ./windows.ps1
 deploy:
