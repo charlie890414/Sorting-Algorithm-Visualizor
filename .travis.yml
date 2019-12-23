@@ -1,0 +1,13 @@
+os: windows
+language: bash
+script:
+  - make_main.bat
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GH_TOKEN
+  file_glob: true
+  file:
+    - "Main.exe"
+  on:
+    tags: true
