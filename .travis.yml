@@ -1,13 +1,13 @@
 os: windows
 language: shell
 script:
-  - choco install -y windows-sdk-10.0
+  - choco install -y windows-sdk-10.1
   - ./make_Help_CD.bat
   - ./make_keyEvents_CD.bat
   - ./make_DelayAndEvent_CD.bat
   - ./make_BubbleSort_CD.bat
   - ./make_main_CD.bat
-  - ./SignTool sign /t http://timestamp.comodoca.com/authenticode /f certificate.pfx "Sorting Algorithm Visualizor.exe"
+  - SignTool sign /t http://timestamp.comodoca.com/authenticode /f certificate.pfx "Sorting Algorithm Visualizor.exe"
 deploy:
   provider: releases
   skip_cleanup: true
