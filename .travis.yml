@@ -1,3 +1,6 @@
+os: windows
+script:
+  - make_main.bat
 deploy:
   provider: releases
   skip_cleanup: true
