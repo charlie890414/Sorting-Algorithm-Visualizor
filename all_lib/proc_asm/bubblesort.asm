@@ -119,6 +119,7 @@ go:
 		xor ebx, ebx
 		inc ebx
 		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
+		
 		;delay
 		INVOKE DelayAndEvent, DelayTime, 20, 1, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 	 		AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next
