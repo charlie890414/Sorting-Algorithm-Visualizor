@@ -83,7 +83,7 @@ jz branch
 mov al, 0
 cmp Next, al
 jz xwaitMsg
-dec Next
+mov Next, 0
 branch:
 
 cmp ecx, 50
