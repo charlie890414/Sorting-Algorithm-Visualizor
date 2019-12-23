@@ -8,7 +8,7 @@ script:
   - ./make_main_CD.bat
 deploy:
   provider: releases
-  cleanup: false
+  cleanup: true
   token: $GH_TOKEN
   file_glob: true
   file:
