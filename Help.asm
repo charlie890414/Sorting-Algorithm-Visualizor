@@ -15,7 +15,8 @@ speed 	BYTE	"Speed",0
 block 	BYTE	"██",0
 
 empty 	BYTE	"░░",0
-space 	BYTE	"  ",0
+space2 	BYTE	"  ",0
+space1 	BYTE	" ",0
 
 play	BYTE	"███",0
 		BYTE	"██████",0
@@ -44,16 +45,20 @@ pushad
 	lea edx, speed
 	call WriteString
 
-	lea edx, space
+	lea edx, space2
 	call WriteString
 
 	mov esi, AnimationSpeed
 	mov eax, [esi]
-	mov ecx, 10
 	call WriteInt
-
-	lea edx, space
-	call WriteString
+	.IF eax == 10
+		lea edx, space1
+		call WriteString
+	.ELSE		
+		lea edx, space2
+		call WriteString
+	.ENDIF
+	mov ecx, 10
 	sd:
 		.IF eax > 0
 			lea edx, block
@@ -81,7 +86,13 @@ pushad
 	; IsAnimationStopped
 	mov CurPos.x, 10
 	mov CurPos.y, 14
-	.IF IsAnimationStopped == 1		
+
+	mov esi, IsAnimationStopped
+	mov eax, [esi]
+	
+	INVOKE ClrRect, 10, 14, 17, 19, ' ', consoleHandle
+
+	.IF eax == 0
 		lea edx, play
 	.ELSE
 		lea edx, stop
@@ -115,7 +126,6 @@ pushad
 	; repeat
 	pop ecx
 	Loop animate
-
 	
 	; help
 	mov CurPos.x, 10

@@ -11,7 +11,8 @@ keyEvents PROC,
     AnimationSpeed: PTR DWORD,
     AlgorithmTotalNumber: DWORD,
 	AlgorithmState: PTR DWORD,
-    Next: PTR BYTE
+    Next: PTR BYTE,
+    consoleHandle: DWORD
     
     Local xout: DWORD
 pushad 
@@ -61,10 +62,12 @@ cmp [esi], eax
 jz zero
 mov eax, 0
 mov [esi], eax
+INVOKE Help, AnimationSpeed, 1, IsAnimationStopped, consoleHandle
 jmp return
 zero:
 mov eax, 1
 mov [esi], eax
+INVOKE Help, AnimationSpeed, 1, IsAnimationStopped, consoleHandle
 jmp return
 xEnter:
 mov eax, 1
@@ -78,6 +81,7 @@ mov eax, [esi]
 inc eax
 mov [esi], eax
 .ENDIF
+INVOKE Help, AnimationSpeed, 1, IsAnimationStopped, consoleHandle
 jmp return
 Down:
 mov esi, AnimationSpeed
@@ -86,6 +90,7 @@ mov eax, [esi]
 dec eax
 mov [esi], eax
 .ENDIF
+INVOKE Help, AnimationSpeed, 1, IsAnimationStopped, consoleHandle
 jmp return
 Right:
 mov esi, AlgorithmState
