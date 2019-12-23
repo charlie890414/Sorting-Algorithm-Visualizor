@@ -1,11 +1,15 @@
 os: windows
-language: bash
+language: shell
 script:
+  - ./make_Help_CD.bat
+  - ./make_keyEvents_CD.bat
+  - ./make_DelayAndEvent_CD.bat
+  - ./make_BubbleSort_CD.bat
   - ./make_main_CD.bat
 deploy:
   provider: releases
-  skip_cleanup: true
-  api_key: $GH_TOKEN
+  cleanup: false
+  token: $GH_TOKEN
   file_glob: true
   file:
     - "Main.exe"

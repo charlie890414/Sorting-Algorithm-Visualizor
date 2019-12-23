@@ -44,5 +44,7 @@ A team project in Assembly Language Course.
      step3: windbg/make.bat
      step5: all_lib/obj/sampleproc.obj
      step6: finalMain.asm line 48
+
 ## make_link.bat
+
      比較高能的make，把需要include library54.inc 的asm放在同一層然後make，以造出obj檔
