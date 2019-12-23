@@ -80,10 +80,10 @@ notR:
 mov al, 0
 cmp IsAnimationStopped, al
 jz branch
-mov al, 1
+mov al, 0
 cmp Next, al
-jnz xwaitMsg
-mov Next, 0
+jz xwaitMsg
+dec Next
 branch:
 
 cmp ecx, 50

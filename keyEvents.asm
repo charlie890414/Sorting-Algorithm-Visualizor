@@ -71,7 +71,7 @@ mov [esi], eax
 INVOKE Help, AnimationSpeed, 1, IsAnimationStopped, consoleHandle
 jmp return
 xEnter:
-mov eax, 1
+mov eax, 6
 mov esi, Next
 mov [esi], eax
 jmp return

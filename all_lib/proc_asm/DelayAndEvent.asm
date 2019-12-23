@@ -14,7 +14,12 @@ DelayAndEvent PROC, DelayTime: DWORD, Accuracy: DWORD, retNum: DWORD,
     consoleHandle: DWORD
     Local Cur: DWORD
     
-pushad
+pushad  
+    mov bl, 1
+    mov esi, IsAnimationStopped
+    cmp [esi], bl
+    jz BYE
+
     mov ecx, DelayTime
     add ecx, Accuracy
     mov eax, Accuracy
@@ -28,12 +33,15 @@ pushad
     cmp eax, 3 
     jnz BYE
     
+
     mov ebx, Accuracy
     sub ecx, ebx
     cmp ecx, Accuracy
     jna PeaceBye
     ja L1
-    
+
+
+
 BYE:
     mov Cur, eax
 popad
