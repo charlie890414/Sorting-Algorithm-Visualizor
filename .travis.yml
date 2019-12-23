@@ -9,7 +9,6 @@ script:
   - choco install -y windows-sdk-10.1
   - powershell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
   - powershell ./windows.ps1
-  - ./SignTool/signtool.exe sign -t http://timestamp.comodoca.com/authenticode -f certificate.pfx Sorting.Algorithm.Visualizor.exe
 deploy:
   provider: releases
   skip_cleanup: true
