@@ -1,12 +1,13 @@
 os: windows
 language: shell
 script:
-  - powershell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
   - ./make_Help_CD.bat
   - ./make_keyEvents_CD.bat
   - ./make_DelayAndEvent_CD.bat
   - ./make_BubbleSort_CD.bat
   - ./make_main_CD.bat
+  - choco install -y windows-sdk-10.0
+  - powershell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
   - powershell ./windows.ps1
 deploy:
   provider: releases
