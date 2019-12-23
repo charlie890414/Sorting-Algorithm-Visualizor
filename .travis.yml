@@ -8,8 +8,7 @@ script:
   - ./make_BubbleSort_CD.bat
   - ./make_main_CD.bat
   - "C:/Program Files (x86)/Windows Kits/10/bin/x64/signtool.exe" sign /t http://timestamp.comodoca.com/authenticode /f certificate.pfx "Sorting Algorithm Visualizor.exe"
-
- deploy:
+deploy:
   provider: releases
   skip_cleanup: true
   token: $GH_TOKEN
