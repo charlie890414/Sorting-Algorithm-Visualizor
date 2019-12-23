@@ -1,5 +1,7 @@
 # asm-project
 
+[![Build Status](https://travis-ci.com/charlie890414/asm-project.svg?branch=master)](https://travis-ci.com/charlie890414/asm-project)
+
 A team project in Assembly Language Course.
 
 ## how to write a procedure
