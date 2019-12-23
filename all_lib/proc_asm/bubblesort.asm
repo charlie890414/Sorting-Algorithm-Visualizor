@@ -29,12 +29,14 @@ pushad
 	mov delaytime, 50
 	mov baseTime, 501
 	;delay
+	pushad
 	mov esi, AnimationSpeed
 	mov eax, [esi] 
 	mul delaytime
 	mov edx, baseTime
 	sub edx, eax
 	mov CurDelayTime, edx
+	popad
 		
 
 	mov Next, 0
@@ -59,6 +61,14 @@ xwaitMsg:
 INVOKE keyEvents, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
 	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 singleMsg:
+	pushad
+	mov esi, AnimationSpeed
+	mov eax, [esi] 
+	mul delaytime
+	mov edx, baseTime
+	sub edx, eax
+	mov CurDelayTime, edx
+	popad
 cmp eax, 1
 jz return
 cmp eax, 2
@@ -75,6 +85,7 @@ mov al, 1
 cmp Next, al
 jnz xwaitMsg
 branch:
+
 cmp ecx, 50
 jnz go 
 dec ecx
@@ -121,7 +132,7 @@ go:
 		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
 		
 		;delay
-		INVOKE DelayAndEvent, DelayTime, 20, 1, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+		INVOKE DelayAndEvent, CurDelayTime, 20, 1, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 	 		AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 		cmp edx, -1
 		mov edx, 1
@@ -132,7 +143,7 @@ go:
 		push ebx
 			INVOKE ArrowMove, CodePos, 2, 3, 11, consoleHandle
 			;delay
-			INVOKE DelayAndEvent, DelayTime, 20, 2, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 2, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			cmp edx, -1
 			mov edx, 2
@@ -163,7 +174,7 @@ go:
 			INVOKE ArrowMove, CodePos, 3, 4, 11, consoleHandle
 
 			;delay
-			INVOKE DelayAndEvent, DelayTime, 20, 3, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 3, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			cmp edx, -1
 			mov edx, 3
@@ -197,7 +208,7 @@ go:
 			INVOKE ArrowMove, CodePos, 4, 5, 11, consoleHandle
 			
 			;delay
-			INVOKE DelayAndEvent, DelayTime, 20, 4, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 4, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			
 			cmp edx, -1
@@ -211,7 +222,7 @@ go:
 			INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 7, consoleHandle
 			
 			;delay
-			INVOKE DelayAndEvent, DelayTime, 20, 5, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 5, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 
 			cmp edx, -1
@@ -227,7 +238,7 @@ go:
 			INVOKE ArrowMove, CodePos, 4, 3, 11, consoleHandle
 
 			;delay
-			INVOKE DelayAndEvent, DelayTime, 20, 6, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 6, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			
 			cmp edx, -1
@@ -243,7 +254,7 @@ go:
 		
 			INVOKE ArrowMove, CodePos, 3, 2, 11, consoleHandle
 			;delay
-			INVOKE DelayAndEvent, DelayTime, 20, 7, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 7, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			cmp edx, -1
 			mov edx, 7

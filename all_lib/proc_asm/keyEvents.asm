@@ -58,6 +58,7 @@ jmp return
 Space:
 mov esi, IsAnimationStopped
 mov eax, 0
+mov xout, eax
 cmp [esi], eax
 jz zero
 mov eax, 0

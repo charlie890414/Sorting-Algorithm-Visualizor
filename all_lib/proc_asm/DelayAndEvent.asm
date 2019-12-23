@@ -18,6 +18,7 @@ pushad
     mov ecx, DelayTime
     add ecx, Accuracy
     mov eax, Accuracy
+    
     L1:
     mov eax, Accuracy
     call Delay
