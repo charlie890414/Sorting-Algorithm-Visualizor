@@ -10,7 +10,8 @@ DelayAndEvent PROC, DelayTime: DWORD, Accuracy: DWORD, retNum: DWORD,
     AnimationSpeed: PTR DWORD,
     AlgorithmTotalNumber: DWORD,
 	AlgorithmState: PTR DWORD,
-    Next: PTR BYTE
+    Next: PTR BYTE,
+    consoleHandle: DWORD
     Local Cur: DWORD
     
 pushad
@@ -19,7 +20,7 @@ pushad
     L1:
     call Delay
     INVOKE keyEvents, SequenceArray, leng, IsNumberSortedArray, IsAnimationStopped,
-	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, Next
+	 	AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, Next, consoleHandle
 
     cmp eax, 3  ; arrow
     jnz BYE
