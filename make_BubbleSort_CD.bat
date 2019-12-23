@@ -14,9 +14,6 @@ set PATH=./
 .\all_lib\ML /c /coff /Zi   BubbleSort.asm
 if errorlevel 1 goto terminate
 
-.\all_lib\LINK /INCREMENTAL:no /debug /subsystem:console /entry:start /out:BubbleSort.exe BubbleSort.obj .\all_lib\obj\*.obj .\all_lib\Irvine32.lib .\all_lib\Kernel32.lib .\all_lib\user32.lib
-if errorlevel 1 goto terminate
-
 DIR BubbleSort.*
 
 :terminate
