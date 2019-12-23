@@ -79,11 +79,11 @@ INVOKE printblock, ADDR sequence, 50, basicPos, spacing, consoleHandle
 notR:
 mov al, 0
 cmp IsAnimationStopped, al
-jnz xwaitMsg
 jz branch
 mov al, 1
 cmp Next, al
 jnz xwaitMsg
+mov Next, 0
 branch:
 
 cmp ecx, 50
