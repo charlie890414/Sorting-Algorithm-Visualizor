@@ -1,7 +1,7 @@
 os: windows
 language: bash
 script:
-  - make_main.bat
+  - ./make_main_CD.bat
 deploy:
   provider: releases
   skip_cleanup: true
