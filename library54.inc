@@ -38,6 +38,15 @@ BubbleSort PROTO,
     spacing: WORD, 
     consoleHandle: DWORD
 	
+
+InsertionSort PROTO, 
+    AnimationSpeed: PTR DWORD, 
+    AlgorithmTotalNumber: DWORD, 
+    AlgorithmState: PTR DWORD,
+    basicPos: COORD, 
+    spacing: WORD, 
+    consoleHandle: DWORD
+	
 keyEvents PROTO,
     SequenceArray: PTR DWORD,
     leng: DWORD,

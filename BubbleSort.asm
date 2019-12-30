@@ -21,14 +21,15 @@ BubbleSort PROC,
 	Local delaytime: DWORD
 	Local baseTime: DWORD
 	Local CurDelayTime: DWORD
-	
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
 	Local Next: BYTE
+
 pushad
 	mov delaytime, 50
 	mov baseTime, 501
-	;delay
+	
+	;set CurDelayTime
 	pushad
 	mov esi, AnimationSpeed
 	mov eax, [esi] 

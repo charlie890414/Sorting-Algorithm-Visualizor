@@ -1,7 +1,7 @@
 INCLUDE library54.inc
 ;constant block
 NumbersLength=50
-AlgorithmTotalNumber=1
+AlgorithmTotalNumber=2
 ;constant block
 
 .data
@@ -19,7 +19,7 @@ key WORD ? ;user input
 
 
 AnimationSpeed DWORD 3 ;A integer indicate speed of the animation, it should be bounded. [1, 10]
-AlgorithmState DWORD 1
+AlgorithmState DWORD 2
 
 
 main EQU start@0
@@ -42,7 +42,9 @@ START:
 	mov eax, AlgorithmState
 	.If eax==1
 		INVOKE BubbleSort, ADDR AnimationSpeed, AlgorithmTotalNumber, ADDR AlgorithmState, basicPos, spacing, consoleHandle
-	;.Elseif eax==2
+	.Elseif eax==2
+		INVOKE InsertionSort, ADDR AnimationSpeed, AlgorithmTotalNumber, ADDR AlgorithmState, basicPos, spacing, consoleHandle
+	
 	.Else
     ;error message
 	.EndIf
