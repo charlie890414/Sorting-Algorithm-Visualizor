@@ -2,14 +2,16 @@ os: windows
 language: shell
 script:
   - whoami.exe
-  - ./make_Help_CD.bat
-  - ./make_keyEvents_CD.bat
-  - ./make_DelayAndEvent_CD.bat
-  - ./make_BubbleSort_CD.bat
-  - ./make_main_CD.bat
+  - ./CICD/make_Help_CICD.bat
+  - ./CICD/make_ShowCode_CICD.bat
+  - ./CICD/make_keyEvents_CICD.bat
+  - ./CICD/make_DelayAndEvent_CICD.bat
+  - ./CICD/make_BubbleSort_CICD.bat
+  - ./CICD/make_InsertionSort_CICD.bat
+  - ./CICD/make_main_CICD.bat
   - ls -al
   - powershell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
-  - powershell ./windows.ps1
+  - powershell ./CICD/windows.ps1
 deploy:
   provider: releases
   skip_cleanup: true
