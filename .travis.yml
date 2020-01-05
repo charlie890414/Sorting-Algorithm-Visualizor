@@ -17,7 +17,6 @@ deploy:
   file_glob: true
   file:
     - Sorting.Algorithm.Visualizor.exe
-    - certificate.crt 
-    - certificate.bat
+    - certificate.crt
   on:
     tags: true
