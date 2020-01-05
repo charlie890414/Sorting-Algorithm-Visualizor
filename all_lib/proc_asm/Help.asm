@@ -9,7 +9,8 @@ mode1	BYTE	"Space: stop or run the animation."		                        , 0
     	BYTE	"R: random generate sequence and Initialize code demo."	        , 0
 	    BYTE	"Enter: play animation one step when the animation was stopped.", 0
 
-algo    BYTE	"Bubble Sort",0
+algo1   BYTE	"Bubble Sort", 0
+algo2	BYTE	"Insertion Sort", 0
 
 speed 	BYTE	"Speed",0
 block 	BYTE	"██",0
@@ -75,10 +76,11 @@ pushad
 	mov CurPos.y, 18
 	.IF AlgorithmState == 1
 		INVOKE setConsoleCursorPosition, consoleHandle, CurPos
-		lea edx, algo
+		lea edx, algo1
 		call WriteString
 	.ELSEIF AlgorithmState == 2	
-		call WaitMsg
+		lea edx, algo2
+		call WriteString
 	.ELSE
 		call WaitMsg
 	.ENDIF
