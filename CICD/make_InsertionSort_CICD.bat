@@ -24,5 +24,4 @@ DIR InsertionSort.*
 MOVE /Y InsertionSort.obj .\all_lib\obj
 COPY /Y InsertionSort.asm .\all_lib\proc_asm
 
-pause
 endlocal

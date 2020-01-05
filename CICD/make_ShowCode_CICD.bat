@@ -24,5 +24,4 @@ DIR ShowCode.*
 MOVE /Y ShowCode.obj .\all_lib\obj
 COPY /Y ShowCode.asm .\all_lib\proc_asm
 
-pause
 endlocal
