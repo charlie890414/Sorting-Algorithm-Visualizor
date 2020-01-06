@@ -24,6 +24,8 @@ BubbleSort PROC,
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
 	Local Next: BYTE
+	Local tmpecx: DWORD
+	Local tmpebx: DWORD
 
 pushad
 	mov delaytime, 50
@@ -125,7 +127,7 @@ go:
 		mov IsAnimationStopped, 1 
 		jmp xwaitMsg
 		keep:
-		push ecx
+		mov tmpecx, ecx
 		xor ebx, ebx
 		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
 		
@@ -138,7 +140,7 @@ go:
 		
 		B1:
 		.While ebx < ecx
-		push ebx
+		mov tmpebx, ebx
 			INVOKE ArrowMove, CodePos, 2, 3, 11, consoleHandle
 			;delay
 			INVOKE DelayAndEvent, CurDelayTime, 20, 2, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
@@ -166,8 +168,8 @@ go:
 			inc ax
 			mov endC2.x, ax
 			INVOKE setRectAttribute, beginC2.x, beginC2.y, endC2.x, endC2.y, 10, consoleHandle
-			pop ebx
-			push ebx
+			mov ebx, tmpebx
+			mov tmpebx, ebx
 
 			INVOKE ArrowMove, CodePos, 3, 4, 11, consoleHandle
 
@@ -183,8 +185,8 @@ go:
 			lea esi, sequence
 			shl ebx, 2
 			add esi, ebx
-			pop ebx
-			push ebx
+			mov ebx, tmpebx
+			mov tmpebx, ebx
 			mov edx, [esi+4]
 			cmp [esi], edx
 			jna NoSwap
@@ -245,7 +247,7 @@ go:
 			B6:
 		
 			EndSwap:
-			pop ebx
+			mov ebx, tmpebx
 			inc ebx
 			back:
 		.EndW
@@ -258,7 +260,7 @@ go:
 			mov edx, 7
 			jne singleMsg
 			B7:
-		pop ecx
+		mov ecx, tmpecx
 
 		; to red
 		INVOKE Index_to_Coord, basicPos, spacing, ecx

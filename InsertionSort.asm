@@ -24,6 +24,8 @@ InsertionSort PROC,
 	Local Sequence[50]: DWORD
 	Local IsNumberSorted[50]: BYTE
 	Local Next: BYTE
+	Local tmpecx: DWORD
+	Local tmpebx: DWORD
 	
 pushad
 	mov delaytime, 50
@@ -121,7 +123,7 @@ go:
 		jmp xwaitMsg
 		
 		keep:
-		push ecx
+		mov tmpecx, ecx
 
 		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
 		
@@ -137,10 +139,10 @@ go:
 		mov ebx, 50
 		sub ebx, ecx	; ebx is 1 to 49
 		lea esi, Sequence
-		push ebx
+		mov tmpebx, ebx
 			shl ebx, 2
 			add esi, ebx
-		pop ebx
+		mov ebx, tmpebx
 		mov edi, esi
 		sub edi, TYPE DWORD
 		
@@ -156,7 +158,7 @@ go:
 
 		L3:
 		
-			push ebx
+			mov tmpebx, ebx
 			INVOKE Index_to_Coord, basicPos, spacing, ebx
 			mov beginC2.y, 0
 			mov endC2.y, ax
@@ -174,7 +176,7 @@ go:
 			inc ax
 			mov endC.x, ax
 			INVOKE setRectAttribute, beginC.x, beginC.y, endC.x, endC.y, 10, consoleHandle
-			pop ebx
+			mov ebx, tmpebx
 
 
 			INVOKE ArrowMove, CodePos, 3, 4, 11, consoleHandle
@@ -256,7 +258,7 @@ go:
 		;change two column to original color
 		INVOKE setRectAttribute, beginC.x, beginC.y, endC.x, endC.y, 12, consoleHandle
 		INVOKE setRectAttribute, beginC2.x, beginC2.y, endC2.x, endC2.y, 12, consoleHandle
-
+		mov ecx, tmpecx
 		dec ecx
 	jmp L2
 
