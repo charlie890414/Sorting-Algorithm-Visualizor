@@ -74,8 +74,9 @@ pushad
 
     mov CurPos.x, 25
 	mov CurPos.y, 18
-	.IF AlgorithmState == 1
-		INVOKE setConsoleCursorPosition, consoleHandle, CurPos
+	INVOKE setConsoleCursorPosition, consoleHandle, CurPos
+
+	.IF AlgorithmState == 1		
 		lea edx, algo1
 		call WriteString
 	.ELSEIF AlgorithmState == 2	
