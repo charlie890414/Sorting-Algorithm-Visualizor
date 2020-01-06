@@ -1,7 +1,6 @@
 INCLUDE library54.inc
 
 .data
-IsAnimationStopped BYTE 1 ;A boolean value to indicate the animation is stopped or not.
 
 .code
 
@@ -26,8 +25,10 @@ BubbleSort PROC,
 	Local Next: BYTE
 	Local tmpecx: DWORD
 	Local tmpebx: DWORD
+	Local IsAnimationStopped: BYTE
 
 pushad
+	mov IsAnimationStopped, 1
 	mov delaytime, 50
 	mov baseTime, 501
 	
@@ -132,7 +133,7 @@ go:
 		INVOKE ArrowMove, CodePos, 1, 2, 11, consoleHandle
 		
 		;delay
-		INVOKE DelayAndEvent, CurDelayTime, 20, 1, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+		INVOKE DelayAndEvent, CurDelayTime, 20, 1, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
 	 		AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 		cmp edx, -1
 		mov edx, 1
@@ -143,7 +144,7 @@ go:
 		mov tmpebx, ebx
 			INVOKE ArrowMove, CodePos, 2, 3, 11, consoleHandle
 			;delay
-			INVOKE DelayAndEvent, CurDelayTime, 20, 2, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 2, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			cmp edx, -1
 			mov edx, 2
@@ -174,7 +175,7 @@ go:
 			INVOKE ArrowMove, CodePos, 3, 4, 11, consoleHandle
 
 			;delay
-			INVOKE DelayAndEvent, CurDelayTime, 20, 3, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 3, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			cmp edx, -1
 			mov edx, 3
@@ -208,7 +209,7 @@ go:
 			INVOKE ArrowMove, CodePos, 4, 5, 11, consoleHandle
 			
 			;delay
-			INVOKE DelayAndEvent, CurDelayTime, 20, 4, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 4, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			
 			cmp edx, -1
@@ -222,7 +223,7 @@ go:
 			INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 7, consoleHandle
 			
 			;delay
-			INVOKE DelayAndEvent, CurDelayTime, 20, 5, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 5, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 
 			cmp edx, -1
@@ -238,7 +239,7 @@ go:
 			INVOKE ArrowMove, CodePos, 4, 3, 11, consoleHandle
 
 			;delay
-			INVOKE DelayAndEvent, CurDelayTime, 20, 6, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 6, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			
 			cmp edx, -1
@@ -254,7 +255,7 @@ go:
 		
 			INVOKE ArrowMove, CodePos, 3, 2, 11, consoleHandle
 			;delay
-			INVOKE DelayAndEvent, CurDelayTime, 20, 7, ADDR Sequence, 50, ADDR IsNumberSorted, OFFSET IsAnimationStopped,
+			INVOKE DelayAndEvent, CurDelayTime, 20, 7, ADDR Sequence, 50, ADDR IsNumberSorted, ADDR IsAnimationStopped,
 				AnimationSpeed, AlgorithmTotalNumber, AlgorithmState, ADDR Next, consoleHandle
 			cmp edx, -1
 			mov edx, 7
