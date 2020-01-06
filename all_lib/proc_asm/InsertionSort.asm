@@ -230,8 +230,8 @@ go:
 
 
 			;change two column to original color
-			INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 7, consoleHandle
-
+			INVOKE setRectAttribute, beginC.x, beginC.y, endC.x, endC.y, 7, consoleHandle
+			INVOKE setRectAttribute, beginC2.x, beginC2.y, endC2.x, endC2.y, 12, consoleHandle
 
 			INVOKE ArrowMove, CodePos, 5, 3, 11, consoleHandle
 			;delay
@@ -254,7 +254,8 @@ go:
 
 		B7:
 		;change two column to original color
-		INVOKE setRectAttribute, beginC.x, beginC.y, endC2.x, endC2.y, 7, consoleHandle
+		INVOKE setRectAttribute, beginC.x, beginC.y, endC.x, endC.y, 12, consoleHandle
+		INVOKE setRectAttribute, beginC2.x, beginC2.y, endC2.x, endC2.y, 12, consoleHandle
 
 		dec ecx
 	jmp L2
